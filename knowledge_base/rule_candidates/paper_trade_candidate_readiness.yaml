@@ -1,0 +1,15 @@
+version: 1
+updated: null
+purpose: Candidate readiness records used to decide whether a refined rule can move to paper validation.
+fields:
+  - candidate_id
+  - source_evidence
+  - candidate_definition
+  - required_context
+  - target_relationship
+  - invalidation
+  - no_trade_filters
+  - contradiction_coverage
+  - ready_for_paper_validation
+records: []
+

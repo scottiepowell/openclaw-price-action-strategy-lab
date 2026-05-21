@@ -1,0 +1,33 @@
+artifact_index_path: data_refs/historical_market_data/artifact_index.yaml
+replay_data_root: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0
+handoff_manifest_path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/strategy_lab_handoff.yaml
+symbols:
+- SPY
+- QQQ
+- AAPL
+- MSFT
+- NVDA
+- AMZN
+- GOOGL
+- META
+- TSLA
+- AVGO
+- IWM
+lookback_bars:
+- 12
+- 24
+- 48
+min_calendar_days_between_cases: 30
+max_cases_per_symbol_per_month: 1
+max_cases_per_symbol_total: 2
+avoid_existing_replay_windows: true
+preferred_sides:
+- bullish
+- bearish
+required_timeframes:
+- 1Day
+- 5Min
+deprecated_sample_sources:
+- data_refs/google_drive
+blocked_timeframes:
+- 1Min

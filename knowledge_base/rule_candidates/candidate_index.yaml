@@ -1,0 +1,17 @@
+version: 1
+updated: null
+purpose: Top-level registry of rule-candidate families.
+families:
+  - id: direction
+    path: knowledge_base/rule_candidates/direction_candidates.yaml
+  - id: current_range
+    path: knowledge_base/rule_candidates/current_range_candidates.yaml
+  - id: support_resistance
+    path: knowledge_base/rule_candidates/support_resistance_candidates.yaml
+  - id: target_activation
+    path: knowledge_base/rule_candidates/target_activation_candidates.yaml
+  - id: no_trade_filters
+    path: knowledge_base/rule_candidates/no_trade_filters.yaml
+  - id: paper_trade_readiness
+    path: knowledge_base/rule_candidates/paper_trade_candidate_readiness.yaml
+

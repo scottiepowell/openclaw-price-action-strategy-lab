@@ -1,0 +1,40 @@
+schema: paper_trade_candidate_v1
+candidate_id: PTC-001
+title: Placeholder paper-trade candidate
+related_phase_3_1_rule_candidate: RC-001
+evidence_links:
+  - link: EX-001
+    supports: direction-model only
+    notes: Used as long AAPL direction-model evidence, not as direct trade permission.
+replay_case_links:
+  - replay_case: replay/cases/HR-001.md
+    replay_status: NOT_VERIFIED
+    replay_outcome: insufficient
+    notes: Real AAPL historical replay inspected and manually reviewed; close_above_resistance was not confirmed.
+related_evidence:
+  examples:
+    - EX-001
+  replay_cases:
+    - replay/cases/HR-001.md
+symbol: AAPL
+direction: long
+timeframe_context: 1D + 5m
+setup_timeframe: 1D
+execution_timeframe: 5m
+support_level: 100.0
+resistance_level: 105.0
+target_price: 110.0
+entry_candidate_price: 105.25
+room_to_target: 4.75
+invalidation_level: 98.5
+confirmation_behavior: Wait for close above resistance before considering paper validation.
+confirmation_type: close_above_resistance
+higher_timeframe_context: Daily context from replay notes.
+higher_timeframe_obstacle_check: not documented
+target_already_hit_check: not documented
+no_trade_filters:
+  - id: NTF-001
+    status: pass
+    note: Placeholder filter review.
+risk_notes: Conservative placeholder risk notes.
+boundary: Paper validation only

@@ -1,0 +1,19 @@
+schema: example_card_v1
+example_id: EX-004
+title: Room to Target
+status: starter
+candidate_family:
+  - room_to_target_exists
+  - target_already_hit
+  - higher_timeframe_obstacle
+  - no_chase
+source_refs:
+  transcript: runs/month2_6_download/transcripts/MONTH 2/HOW TO USE THE FIB FOR CURRENT RANGES LESSON [a3ynlbskzm].txt
+  snapshots:
+    - a3ynlbskzm:ts-000035
+    - a3ynlbskzm:ts-000147
+    - a3ynlbskzm:ts-000154
+replay_refs:
+  - tests/fixtures/replay_cases/verified_sample.md
+notes:
+  - Gate only; blocks weak setups before deeper confirmation.

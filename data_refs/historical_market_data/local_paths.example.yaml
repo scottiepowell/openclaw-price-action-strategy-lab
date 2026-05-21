@@ -1,0 +1,8 @@
+schema: local_paths_example_v1
+status: placeholder
+paths:
+  historical_data_root: /path/to/historical/market/data
+  parquet_root: /path/to/parquet/files
+  csv_root: /path/to/csv/files
+notes:
+  - Keep real paths out of version control.

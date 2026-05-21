@@ -1,0 +1,11 @@
+schema: break_behavior_label_dictionary_v1
+status: placeholder
+labels:
+  - wick_break
+  - close_break
+  - hold
+  - retest
+  - reject
+  - reclaim
+  - failed_break
+  - follow_through

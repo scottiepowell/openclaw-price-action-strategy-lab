@@ -1,0 +1,8 @@
+version: 1
+purpose: Symbols allowed for paper-validation and related dry-run work.
+universe:
+  watchlist: []
+  excluded: []
+notes:
+  - keep this aligned with the paper-validation config
+  - do_not_use_live_only_symbols_without_review

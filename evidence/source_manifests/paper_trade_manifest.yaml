@@ -1,0 +1,5 @@
+schema: paper_trade_manifest_v1
+status: placeholder
+items: []
+notes:
+  - Track paper-validation references and outputs only.

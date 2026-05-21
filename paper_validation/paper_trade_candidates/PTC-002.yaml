@@ -1,0 +1,40 @@
+schema: paper_trade_candidate_v1
+candidate_id: PTC-002
+title: Placeholder paper-trade candidate for SPY
+related_phase_3_1_rule_candidate: RC-001
+evidence_links:
+  - link: EX-002
+    supports: direction-model only
+    notes: Dry-run placeholder until manual visual review passes.
+replay_case_links:
+  - replay_case: replay/cases/HR-002.md
+    replay_status: NOT_VERIFIED
+    replay_outcome: insufficient
+    notes: SPY replay case is dry-run only until manual visual review passes.
+related_evidence:
+  examples:
+    - EX-002
+  replay_cases:
+    - replay/cases/HR-002.md
+symbol: SPY
+direction: long
+timeframe_context: 1D + 5m
+setup_timeframe: 1D
+execution_timeframe: 5m
+support_level: TBD
+resistance_level: TBD
+target_price: TBD
+entry_candidate_price: TBD
+room_to_target: TBD
+invalidation_level: TBD
+confirmation_behavior: Wait for manual visual review before considering paper validation.
+confirmation_type: close_above_resistance
+higher_timeframe_context: TBD
+higher_timeframe_obstacle_check: TBD
+target_already_hit_check: TBD
+no_trade_filters:
+  - id: NTF-001
+    status: pass
+    note: Dry-run only.
+risk_notes: Dry-run only; no broker action allowed.
+boundary: Paper validation only

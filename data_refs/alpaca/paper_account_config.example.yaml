@@ -1,0 +1,11 @@
+version: 1
+mode: paper
+broker: alpaca
+paper_only: true
+api_key: "REPLACE_ME"
+api_secret: "REPLACE_ME"
+base_url: "https://paper-api.alpaca.markets"
+account_label: "paper-validation"
+notes:
+  - do_not_commit_real_keys
+  - do_not_use_live_account_keys

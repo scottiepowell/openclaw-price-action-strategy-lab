@@ -1,0 +1,26 @@
+version: 1
+updated: null
+purpose: Blocking filters that prevent candidate promotion or entry consideration.
+filters:
+  - id: NTF-001
+    name: target_already_hit
+    description: The intended target has already been reached before the setup is considered.
+  - id: NTF-002
+    name: higher_timeframe_obstacle
+    description: A higher-timeframe level or structure blocks the setup.
+  - id: NTF-003
+    name: invalidation_consumed
+    description: The setup's invalidation has already occurred.
+  - id: NTF-004
+    name: insufficient_room_to_target
+    description: There is not enough room between entry context and target.
+  - id: NTF-005
+    name: incomplete_context
+    description: Required direction, timeframe, or level context is missing.
+  - id: NTF-006
+    name: contradictory_evidence
+    description: Recorded evidence conflicts with the candidate definition.
+  - id: NTF-007
+    name: hindsight_breakout
+    description: The move is only convincing after the fact.
+

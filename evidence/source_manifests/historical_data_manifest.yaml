@@ -1,0 +1,6 @@
+# Historical data manifest
+schema: historical_data_manifest_v1
+status: placeholder
+items: []
+notes:
+  - Reference OHLCV artifacts stored in the historical data extraction repo or approved external storage.

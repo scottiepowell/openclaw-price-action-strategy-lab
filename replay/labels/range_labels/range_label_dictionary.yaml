@@ -1,0 +1,10 @@
+schema: range_label_dictionary_v1
+status: placeholder
+labels:
+  - current_range
+  - foundation_range
+  - tighter_range
+  - same_candle_range
+  - range_stale
+  - range_replaced
+  - arbitrary_anchor

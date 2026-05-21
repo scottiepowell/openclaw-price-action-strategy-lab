@@ -1,0 +1,11 @@
+schema: support_resistance_label_dictionary_v1
+status: placeholder
+labels:
+  - support
+  - resistance
+  - support_break
+  - resistance_break
+  - support_hold
+  - resistance_hold
+  - role_flip
+  - ignored_level

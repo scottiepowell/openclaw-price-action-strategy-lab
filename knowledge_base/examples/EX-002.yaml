@@ -1,0 +1,23 @@
+schema: example_card_v1
+example_id: EX-002
+title: 78 Decision Level
+status: starter
+candidate_family:
+  - 78_test_candidate
+  - 78_wick_break_candidate
+  - 78_close_break_candidate
+  - 78_hold_retest_candidate
+  - 78_reclaim_candidate
+  - 78_failure_rejection_candidate
+  - 78_target_activation_candidate
+  - 78_invalidation_candidate
+source_refs:
+  transcript: runs/month2_6_download/transcripts/MONTH 2/HOW TO USE THE FIB FOR CURRENT RANGES LESSON [a3ynlbskzm].txt
+  snapshots:
+    - a3ynlbskzm:ts-000156
+    - a3ynlbskzm:ts-000170
+    - q0fxq1o9gs:ts-000406
+replay_refs:
+  - tests/fixtures/replay_cases/verified_sample.md
+notes:
+  - 78 is a confirmation boundary, not an entry by itself.

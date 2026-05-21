@@ -1,0 +1,10 @@
+schema: invalidation_label_dictionary_v1
+status: placeholder
+labels:
+  - invalidation_candidate
+  - invalidated
+  - context_missing
+  - higher_timeframe_obstacle
+  - no_trade_filter
+  - same_candle_overfit
+  - tighter_range_needed

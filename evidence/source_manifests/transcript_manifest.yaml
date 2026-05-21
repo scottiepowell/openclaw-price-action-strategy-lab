@@ -1,0 +1,6 @@
+# Transcript manifest
+schema: transcript_manifest_v1
+status: placeholder
+items: []
+notes:
+  - Reference transcript sources from the archiver repo or Google Drive.

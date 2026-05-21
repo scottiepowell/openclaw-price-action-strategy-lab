@@ -1,0 +1,10 @@
+schema: target_label_dictionary_v1
+status: placeholder
+labels:
+  - target
+  - target_hit
+  - target_missed
+  - target_already_hit
+  - target_retired
+  - room_to_target
+  - target_activation

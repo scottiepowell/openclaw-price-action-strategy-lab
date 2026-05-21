@@ -1,0 +1,16 @@
+schema: historical_market_data_known_symbols_v1
+status: recorded
+symbols:
+  - SPY
+  - QQQ
+  - AAPL
+  - MSFT
+  - NVDA
+  - AMZN
+  - GOOGL
+  - META
+  - TSLA
+  - AVGO
+  - IWM
+notes:
+  - Default symbol universe matches the historical market data extractor defaults.

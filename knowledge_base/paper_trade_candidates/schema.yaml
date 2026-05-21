@@ -1,0 +1,117 @@
+schema: paper_trade_candidate_v1
+version: 2
+purpose: Canonical machine-readable paper-trade candidate record used for dry-run validation.
+fields:
+  candidate_id:
+    type: string
+    required: true
+  schema:
+    type: string
+    required: true
+  title:
+    type: string
+    required: false
+  related_phase_3_1_rule_candidate:
+    type: string
+    required: true
+  evidence_links:
+    type: array
+    required: true
+    item_fields:
+      link:
+        type: string
+        required: true
+      supports:
+        type: string
+        required: true
+      notes:
+        type: string
+        required: false
+  replay_case_links:
+    type: array
+    required: true
+    item_fields:
+      replay_case:
+        type: string
+        required: true
+      replay_status:
+        type: string
+        required: true
+      replay_outcome:
+        type: string
+        required: false
+      notes:
+        type: string
+        required: false
+  symbol:
+    type: string
+    required: true
+  direction:
+    type: string
+    required: true
+    allowed: [long, short]
+  timeframe_context:
+    type: string
+    required: true
+  setup_timeframe:
+    type: string
+    required: true
+  execution_timeframe:
+    type: string
+    required: true
+  support_level:
+    type: number|string
+    required: true
+  resistance_level:
+    type: number|string
+    required: true
+  target_price:
+    type: number|string
+    required: true
+  entry_candidate_price:
+    type: number|string
+    required: true
+  room_to_target:
+    type: number|string|object
+    required: true
+  invalidation_level:
+    type: number|string
+    required: true
+  confirmation_behavior:
+    type: string
+    required: true
+  confirmation_type:
+    type: string
+    required: true
+  higher_timeframe_context:
+    type: string
+    required: true
+  higher_timeframe_obstacle_check:
+    type: string
+    required: true
+  target_already_hit_check:
+    type: string
+    required: true
+  no_trade_filters:
+    type: array
+    required: true
+    item_fields:
+      id:
+        type: string
+        required: true
+      status:
+        type: string
+        required: false
+        allowed: [pass, warn, blocked]
+      note:
+        type: string
+        required: false
+  risk_notes:
+    type: string
+    required: true
+  boundary:
+    type: string
+    required: true
+notes:
+  - This schema is paper-validation only.
+  - No live-trading fields belong here.

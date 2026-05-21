@@ -1,0 +1,22 @@
+schema: example_card_v1
+example_id: EX-005
+title: No-Trade Filters
+status: starter
+candidate_family:
+  - higher_timeframe_obstacle
+  - context_missing
+  - target_already_hit
+  - same_candle_overfit
+  - arbitrary_anchor
+  - tighter_range_needed
+  - invalidation_missing
+source_refs:
+  transcript: runs/month2_6_download/transcripts/MONTH 2/MONTHLY CURRENT RANGE LESSON [q0fxq1o9gs].txt
+  snapshots:
+    - q0fxq1o9gs:ts-000448
+    - q0fxq1o9gs:ts-000658
+    - a3ynlbskzm:ts-000109
+replay_refs:
+  - replay/contradiction_cases/HC-001.md
+notes:
+  - Conservative stay-out cases only.

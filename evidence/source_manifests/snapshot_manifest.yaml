@@ -1,0 +1,6 @@
+# Snapshot manifest
+schema: snapshot_manifest_v1
+status: placeholder
+items: []
+notes:
+  - Reference snapshot maps and image evidence without copying large raw libraries here.

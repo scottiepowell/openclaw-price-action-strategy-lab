@@ -1,0 +1,19 @@
+schema: example_card_v1
+example_id: EX-001
+title: Current Range
+status: starter
+candidate_family:
+  - current_range_identification
+  - current_range_context
+  - current_range_target_relationship
+  - current_range_invalidation
+source_refs:
+  transcript: runs/month2_6_download/transcripts/MONTH 2/WHAT ARE CURRENT RANGES LESSON [awsgn46dne].txt
+  snapshots:
+    - awsgn46dne:ts-000045
+    - awsgn46dne:ts-000270
+    - awsgn46dne:ts-000660
+replay_refs:
+  - replay/cases/HR-001.md
+notes:
+  - Starter canonical example for defining and bounding the active range.

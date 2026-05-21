@@ -1,0 +1,8 @@
+schema: historical_market_data_known_timeframes_v1
+status: recorded
+timeframes:
+  - 1Min
+  - 5Min
+  - 1Day
+notes:
+  - Default timeframes match the historical market data extractor defaults.

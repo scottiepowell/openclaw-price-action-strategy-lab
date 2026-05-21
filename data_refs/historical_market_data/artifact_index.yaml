@@ -1,0 +1,967 @@
+schema: historical_market_data_artifact_index_v1
+status: active
+generated_at: '2026-05-19T13:46:46.103853+00:00'
+artifact_root: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0
+symbols:
+- SPY
+- QQQ
+- AAPL
+- MSFT
+- NVDA
+- AMZN
+- GOOGL
+- META
+- TSLA
+- AVGO
+- IWM
+timeframes: &id001
+- 1Day
+- 5Min
+allowed_for_replay: *id001
+blocked_for_replay:
+- 1Min
+items:
+- symbol: SPY
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/SPY/1Day/SPY_1Day_2023.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: SPY
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/SPY/1Day/SPY_1Day_2024.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: SPY
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/SPY/1Day/SPY_1Day_2025.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: SPY
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/SPY/1Day/SPY_1Day_2026.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: SPY
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/SPY/5Min/SPY_5Min_2023.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: SPY
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/SPY/5Min/SPY_5Min_2024.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: SPY
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/SPY/5Min/SPY_5Min_2025.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: SPY
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/SPY/5Min/SPY_5Min_2026.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: QQQ
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/QQQ/1Day/QQQ_1Day_2023.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: QQQ
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/QQQ/1Day/QQQ_1Day_2024.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: QQQ
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/QQQ/1Day/QQQ_1Day_2025.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: QQQ
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/QQQ/1Day/QQQ_1Day_2026.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: QQQ
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/QQQ/5Min/QQQ_5Min_2023.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: QQQ
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/QQQ/5Min/QQQ_5Min_2024.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: QQQ
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/QQQ/5Min/QQQ_5Min_2025.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: QQQ
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/QQQ/5Min/QQQ_5Min_2026.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: AAPL
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/AAPL/1Day/AAPL_1Day_2023.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: AAPL
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/AAPL/1Day/AAPL_1Day_2024.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: AAPL
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/AAPL/1Day/AAPL_1Day_2025.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: AAPL
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/AAPL/1Day/AAPL_1Day_2026.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: AAPL
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/AAPL/5Min/AAPL_5Min_2023.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: AAPL
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/AAPL/5Min/AAPL_5Min_2024.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: AAPL
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/AAPL/5Min/AAPL_5Min_2025.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: AAPL
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/AAPL/5Min/AAPL_5Min_2026.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: MSFT
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/MSFT/1Day/MSFT_1Day_2023.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: MSFT
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/MSFT/1Day/MSFT_1Day_2024.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: MSFT
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/MSFT/1Day/MSFT_1Day_2025.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: MSFT
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/MSFT/1Day/MSFT_1Day_2026.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: MSFT
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/MSFT/5Min/MSFT_5Min_2023.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: MSFT
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/MSFT/5Min/MSFT_5Min_2024.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: MSFT
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/MSFT/5Min/MSFT_5Min_2025.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: MSFT
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/MSFT/5Min/MSFT_5Min_2026.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: NVDA
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/NVDA/1Day/NVDA_1Day_2023.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: NVDA
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/NVDA/1Day/NVDA_1Day_2024.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: NVDA
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/NVDA/1Day/NVDA_1Day_2025.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: NVDA
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/NVDA/1Day/NVDA_1Day_2026.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: NVDA
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/NVDA/5Min/NVDA_5Min_2023.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: NVDA
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/NVDA/5Min/NVDA_5Min_2024.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: NVDA
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/NVDA/5Min/NVDA_5Min_2025.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: NVDA
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/NVDA/5Min/NVDA_5Min_2026.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: AMZN
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/AMZN/1Day/AMZN_1Day_2023.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: AMZN
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/AMZN/1Day/AMZN_1Day_2024.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: AMZN
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/AMZN/1Day/AMZN_1Day_2025.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: AMZN
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/AMZN/1Day/AMZN_1Day_2026.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: AMZN
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/AMZN/5Min/AMZN_5Min_2023.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: AMZN
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/AMZN/5Min/AMZN_5Min_2024.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: AMZN
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/AMZN/5Min/AMZN_5Min_2025.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: AMZN
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/AMZN/5Min/AMZN_5Min_2026.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: GOOGL
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/GOOGL/1Day/GOOGL_1Day_2023.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: GOOGL
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/GOOGL/1Day/GOOGL_1Day_2024.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: GOOGL
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/GOOGL/1Day/GOOGL_1Day_2025.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: GOOGL
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/GOOGL/1Day/GOOGL_1Day_2026.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: GOOGL
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/GOOGL/5Min/GOOGL_5Min_2023.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: GOOGL
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/GOOGL/5Min/GOOGL_5Min_2024.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: GOOGL
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/GOOGL/5Min/GOOGL_5Min_2025.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: GOOGL
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/GOOGL/5Min/GOOGL_5Min_2026.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: META
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/META/1Day/META_1Day_2023.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: META
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/META/1Day/META_1Day_2024.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: META
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/META/1Day/META_1Day_2025.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: META
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/META/1Day/META_1Day_2026.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: META
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/META/5Min/META_5Min_2023.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: META
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/META/5Min/META_5Min_2024.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: META
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/META/5Min/META_5Min_2025.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: META
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/META/5Min/META_5Min_2026.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: TSLA
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/TSLA/1Day/TSLA_1Day_2023.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: TSLA
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/TSLA/1Day/TSLA_1Day_2024.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: TSLA
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/TSLA/1Day/TSLA_1Day_2025.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: TSLA
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/TSLA/1Day/TSLA_1Day_2026.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: TSLA
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/TSLA/5Min/TSLA_5Min_2023.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: TSLA
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/TSLA/5Min/TSLA_5Min_2024.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: TSLA
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/TSLA/5Min/TSLA_5Min_2025.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: TSLA
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/TSLA/5Min/TSLA_5Min_2026.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: AVGO
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/AVGO/1Day/AVGO_1Day_2023.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: AVGO
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/AVGO/1Day/AVGO_1Day_2024.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: AVGO
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/AVGO/1Day/AVGO_1Day_2025.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: AVGO
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/AVGO/1Day/AVGO_1Day_2026.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: AVGO
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/AVGO/5Min/AVGO_5Min_2023.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PARTIAL
+  note: published full handoff artifact
+- symbol: AVGO
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/AVGO/5Min/AVGO_5Min_2024.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: AVGO
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/AVGO/5Min/AVGO_5Min_2025.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: AVGO
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/AVGO/5Min/AVGO_5Min_2026.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: IWM
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/IWM/1Day/IWM_1Day_2023.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: IWM
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/IWM/1Day/IWM_1Day_2024.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: IWM
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/IWM/1Day/IWM_1Day_2025.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: IWM
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/IWM/1Day/IWM_1Day_2026.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: IWM
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/IWM/5Min/IWM_5Min_2023.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: IWM
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/IWM/5Min/IWM_5Min_2024.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: IWM
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/IWM/5Min/IWM_5Min_2025.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+- symbol: IWM
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0/symbols/IWM/5Min/IWM_5Min_2026.parquet
+  file_type: parquet
+  artifact_kind: full
+  expected_coverage: full
+  coverage_status: PASSED
+  note: published full handoff artifact
+deprecated_items:
+- symbol: AAPL
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-monster-academy-strategy-lab/data_refs/google_drive/AAPL_1Day_sample.csv
+  file_type: csv
+  artifact_kind: sample
+  status: deprecated_sample_only
+  notes: sample-only; not for date-diversified replay
+- symbol: AAPL
+  timeframe: 1Min
+  path: /home/scott/projects/openclaw-monster-academy-strategy-lab/data_refs/google_drive/AAPL_1Min_sample.csv
+  file_type: csv
+  artifact_kind: sample
+  status: deprecated_sample_only
+  notes: sample-only; not for date-diversified replay
+- symbol: AAPL
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-monster-academy-strategy-lab/data_refs/google_drive/AAPL_5Min_sample.csv
+  file_type: csv
+  artifact_kind: sample
+  status: deprecated_sample_only
+  notes: sample-only; not for date-diversified replay
+- symbol: AMZN
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-monster-academy-strategy-lab/data_refs/google_drive/AMZN_1Day_sample.csv
+  file_type: csv
+  artifact_kind: sample
+  status: deprecated_sample_only
+  notes: sample-only; not for date-diversified replay
+- symbol: AMZN
+  timeframe: 1Min
+  path: /home/scott/projects/openclaw-monster-academy-strategy-lab/data_refs/google_drive/AMZN_1Min_sample.csv
+  file_type: csv
+  artifact_kind: sample
+  status: deprecated_sample_only
+  notes: sample-only; not for date-diversified replay
+- symbol: AMZN
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-monster-academy-strategy-lab/data_refs/google_drive/AMZN_5Min_sample.csv
+  file_type: csv
+  artifact_kind: sample
+  status: deprecated_sample_only
+  notes: sample-only; not for date-diversified replay
+- symbol: AVGO
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-monster-academy-strategy-lab/data_refs/google_drive/AVGO_1Day_sample.csv
+  file_type: csv
+  artifact_kind: sample
+  status: deprecated_sample_only
+  notes: sample-only; not for date-diversified replay
+- symbol: AVGO
+  timeframe: 1Min
+  path: /home/scott/projects/openclaw-monster-academy-strategy-lab/data_refs/google_drive/AVGO_1Min_sample.csv
+  file_type: csv
+  artifact_kind: sample
+  status: deprecated_sample_only
+  notes: sample-only; not for date-diversified replay
+- symbol: AVGO
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-monster-academy-strategy-lab/data_refs/google_drive/AVGO_5Min_sample.csv
+  file_type: csv
+  artifact_kind: sample
+  status: deprecated_sample_only
+  notes: sample-only; not for date-diversified replay
+- symbol: GOOGL
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-monster-academy-strategy-lab/data_refs/google_drive/GOOGL_1Day_sample.csv
+  file_type: csv
+  artifact_kind: sample
+  status: deprecated_sample_only
+  notes: sample-only; not for date-diversified replay
+- symbol: GOOGL
+  timeframe: 1Min
+  path: /home/scott/projects/openclaw-monster-academy-strategy-lab/data_refs/google_drive/GOOGL_1Min_sample.csv
+  file_type: csv
+  artifact_kind: sample
+  status: deprecated_sample_only
+  notes: sample-only; not for date-diversified replay
+- symbol: GOOGL
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-monster-academy-strategy-lab/data_refs/google_drive/GOOGL_5Min_sample.csv
+  file_type: csv
+  artifact_kind: sample
+  status: deprecated_sample_only
+  notes: sample-only; not for date-diversified replay
+- symbol: IWM
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-monster-academy-strategy-lab/data_refs/google_drive/IWM_1Day_sample.csv
+  file_type: csv
+  artifact_kind: sample
+  status: deprecated_sample_only
+  notes: sample-only; not for date-diversified replay
+- symbol: IWM
+  timeframe: 1Min
+  path: /home/scott/projects/openclaw-monster-academy-strategy-lab/data_refs/google_drive/IWM_1Min_sample.csv
+  file_type: csv
+  artifact_kind: sample
+  status: deprecated_sample_only
+  notes: sample-only; not for date-diversified replay
+- symbol: IWM
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-monster-academy-strategy-lab/data_refs/google_drive/IWM_5Min_sample.csv
+  file_type: csv
+  artifact_kind: sample
+  status: deprecated_sample_only
+  notes: sample-only; not for date-diversified replay
+- symbol: META
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-monster-academy-strategy-lab/data_refs/google_drive/META_1Day_sample.csv
+  file_type: csv
+  artifact_kind: sample
+  status: deprecated_sample_only
+  notes: sample-only; not for date-diversified replay
+- symbol: META
+  timeframe: 1Min
+  path: /home/scott/projects/openclaw-monster-academy-strategy-lab/data_refs/google_drive/META_1Min_sample.csv
+  file_type: csv
+  artifact_kind: sample
+  status: deprecated_sample_only
+  notes: sample-only; not for date-diversified replay
+- symbol: META
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-monster-academy-strategy-lab/data_refs/google_drive/META_5Min_sample.csv
+  file_type: csv
+  artifact_kind: sample
+  status: deprecated_sample_only
+  notes: sample-only; not for date-diversified replay
+- symbol: MSFT
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-monster-academy-strategy-lab/data_refs/google_drive/MSFT_1Day_sample.csv
+  file_type: csv
+  artifact_kind: sample
+  status: deprecated_sample_only
+  notes: sample-only; not for date-diversified replay
+- symbol: MSFT
+  timeframe: 1Min
+  path: /home/scott/projects/openclaw-monster-academy-strategy-lab/data_refs/google_drive/MSFT_1Min_sample.csv
+  file_type: csv
+  artifact_kind: sample
+  status: deprecated_sample_only
+  notes: sample-only; not for date-diversified replay
+- symbol: MSFT
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-monster-academy-strategy-lab/data_refs/google_drive/MSFT_5Min_sample.csv
+  file_type: csv
+  artifact_kind: sample
+  status: deprecated_sample_only
+  notes: sample-only; not for date-diversified replay
+- symbol: NVDA
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-monster-academy-strategy-lab/data_refs/google_drive/NVDA_1Day_sample.csv
+  file_type: csv
+  artifact_kind: sample
+  status: deprecated_sample_only
+  notes: sample-only; not for date-diversified replay
+- symbol: NVDA
+  timeframe: 1Min
+  path: /home/scott/projects/openclaw-monster-academy-strategy-lab/data_refs/google_drive/NVDA_1Min_sample.csv
+  file_type: csv
+  artifact_kind: sample
+  status: deprecated_sample_only
+  notes: sample-only; not for date-diversified replay
+- symbol: NVDA
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-monster-academy-strategy-lab/data_refs/google_drive/NVDA_5Min_sample.csv
+  file_type: csv
+  artifact_kind: sample
+  status: deprecated_sample_only
+  notes: sample-only; not for date-diversified replay
+- symbol: QQQ
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-monster-academy-strategy-lab/data_refs/google_drive/QQQ_1Day_sample.csv
+  file_type: csv
+  artifact_kind: sample
+  status: deprecated_sample_only
+  notes: sample-only; not for date-diversified replay
+- symbol: QQQ
+  timeframe: 1Min
+  path: /home/scott/projects/openclaw-monster-academy-strategy-lab/data_refs/google_drive/QQQ_1Min_sample.csv
+  file_type: csv
+  artifact_kind: sample
+  status: deprecated_sample_only
+  notes: sample-only; not for date-diversified replay
+- symbol: QQQ
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-monster-academy-strategy-lab/data_refs/google_drive/QQQ_5Min_sample.csv
+  file_type: csv
+  artifact_kind: sample
+  status: deprecated_sample_only
+  notes: sample-only; not for date-diversified replay
+- symbol: SPY
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-monster-academy-strategy-lab/data_refs/google_drive/SPY_1Day_sample.csv
+  file_type: csv
+  artifact_kind: sample
+  status: deprecated_sample_only
+  notes: sample-only; not for date-diversified replay
+- symbol: SPY
+  timeframe: 1Min
+  path: /home/scott/projects/openclaw-monster-academy-strategy-lab/data_refs/google_drive/SPY_1Min_sample.csv
+  file_type: csv
+  artifact_kind: sample
+  status: deprecated_sample_only
+  notes: sample-only; not for date-diversified replay
+- symbol: SPY
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-monster-academy-strategy-lab/data_refs/google_drive/SPY_5Min_sample.csv
+  file_type: csv
+  artifact_kind: sample
+  status: deprecated_sample_only
+  notes: sample-only; not for date-diversified replay
+- symbol: TSLA
+  timeframe: 1Day
+  path: /home/scott/projects/openclaw-monster-academy-strategy-lab/data_refs/google_drive/TSLA_1Day_sample.csv
+  file_type: csv
+  artifact_kind: sample
+  status: deprecated_sample_only
+  notes: sample-only; not for date-diversified replay
+- symbol: TSLA
+  timeframe: 1Min
+  path: /home/scott/projects/openclaw-monster-academy-strategy-lab/data_refs/google_drive/TSLA_1Min_sample.csv
+  file_type: csv
+  artifact_kind: sample
+  status: deprecated_sample_only
+  notes: sample-only; not for date-diversified replay
+- symbol: TSLA
+  timeframe: 5Min
+  path: /home/scott/projects/openclaw-monster-academy-strategy-lab/data_refs/google_drive/TSLA_5Min_sample.csv
+  file_type: csv
+  artifact_kind: sample
+  status: deprecated_sample_only
+  notes: sample-only; not for date-diversified replay
+notes:
+- Use the published full 11-symbol handoff artifact root for replay discovery.
+- Do not use data_refs/google_drive sample exports for replay discovery.
+- Approved replay timeframes are 1Day and 5Min only.
+- 1Min remains blocked until the earlier partial-coverage issue is resolved separately.
+- Sample files remain deprecated for replay discovery.
+- 'Upstream warning: AVGO 5Min 2023 has a PARTIAL yearly partition in the artifact
+  manifest even though the aggregate handoff passed.'
