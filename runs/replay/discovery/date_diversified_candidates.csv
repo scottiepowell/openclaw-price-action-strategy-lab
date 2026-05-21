@@ -1,5 +1,1 @@
 replay_id,symbol,side,timestamp,event_type,prior_level,breakout_or_breakdown_amount,lookback_bars,max_high_next_6_bars,max_high_next_12_bars,max_high_next_24_bars,min_low_next_6_bars,min_low_next_12_bars,min_low_next_24_bars,close_after_6_bars,close_after_12_bars,close_after_24_bars,reason_selected,distance_from_nearest_existing_case_days,has_1d_context
-HR-016,META,bullish,2023-06-08T14:40:00+00:00,close_above_resistance,263.655,0.08500000000003638,12,267.145,267.54,267.6,,,,266.81,267.29,266.86,bullish close_above_resistance event,20,true
-HR-017,SPY,bullish,2023-10-10T13:30:00+00:00,close_above_resistance,432.665,0.5049999999999955,12,434.245,435.43,436.635,,,,434.15,435.36,436.635,bullish close_above_resistance event,20,true
-HR-018,META,bearish,2023-12-14T14:30:00+00:00,close_below_support,333.63,0.4300000000000068,12,,,,330.25,329.47,328.785,330.32,330.75,332.16,bearish close_below_support event,15,true
-HR-019,SPY,bearish,2023-08-30T17:50:00+00:00,close_below_support,450.915,0.3050000000000068,12,,,,450.12,450.045,450.045,450.4,450.985,450.655,bearish close_below_support event,20,true

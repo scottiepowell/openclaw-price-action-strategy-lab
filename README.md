@@ -27,6 +27,8 @@ git@github.com:scottiepowell/openclaw-price-action-strategy-lab.git
 
 ## Safety
 
+This project is not a live trading bot.
+
 Do not commit:
 
 - API keys
