@@ -121,6 +121,22 @@ class DiversifiedReplayCandidate:
 
 
 @dataclass(frozen=True)
+class StrictBearishBreakdownCandidate:
+    symbol: str
+    event_timestamp: str
+    prior_support: float
+    breakdown_close: float
+    downside_target: float
+    invalidation_level: float
+    target_hit_after_confirmation: bool
+    invalidation_hit_after_confirmation: bool
+    min_low_after_confirmation: float
+    max_close_after_confirmation: float
+    suggested_classification: str
+    reason_selected: str
+
+
+@dataclass(frozen=True)
 class ReplayDiscoveryConfig:
     symbols: list[str]
     lookback_bars: list[int]
@@ -1678,4 +1694,179 @@ def write_discovery_constraint_audit(repo_root: Path) -> tuple[Path, Path]:
         writer.writeheader()
         for row in csv_rows:
             writer.writerow({key: row.get(key, "") for key in writer.fieldnames})
+    return md_path, csv_path
+
+
+def _strict_bearish_geometry_ok(prior_support: float, breakdown_close: float, downside_target: float, invalidation_level: float) -> bool:
+    return breakdown_close < prior_support and downside_target < breakdown_close and invalidation_level > breakdown_close
+
+
+def _strict_bearish_confirmation_metrics(repo_root: Path, event: BearishDiscoveryEvent) -> dict[str, float | bool]:
+    five_min_path = resolve_historical_market_data_paths(repo_root, event.symbol).get("5Min")
+    if five_min_path is None:
+        raise FileNotFoundError(f"No 5Min data available for {event.symbol}")
+
+    rows = _load_rows(five_min_path)
+    rows.sort(key=lambda row: _parse_ts(row["timestamp"]))
+    event_index = next(i for i, row in enumerate(rows) if row["timestamp"] == event.timestamp)
+    confirmation_rows = rows[event_index:]
+
+    downside_target = event.close - event.breakdown_amount
+    invalidation_level = event.prior_support
+    target_hit_after_confirmation = any(_float(row["low"]) <= downside_target for row in confirmation_rows)
+    invalidation_hit_after_confirmation = any(_float(row["high"]) >= invalidation_level for row in confirmation_rows)
+    min_low_after_confirmation = min((_float(row["low"]) for row in confirmation_rows), default=float("nan"))
+    max_close_after_confirmation = max((_float(row["close"]) for row in confirmation_rows), default=float("nan"))
+
+    return {
+        "downside_target": downside_target,
+        "invalidation_level": invalidation_level,
+        "target_hit_after_confirmation": target_hit_after_confirmation,
+        "invalidation_hit_after_confirmation": invalidation_hit_after_confirmation,
+        "min_low_after_confirmation": min_low_after_confirmation,
+        "max_close_after_confirmation": max_close_after_confirmation,
+    }
+
+
+def _strict_bearish_confirmation_metrics_from_rows(rows: list[dict[str, str]], event: BearishDiscoveryEvent) -> dict[str, float | bool]:
+    event_index = next(i for i, row in enumerate(rows) if row["timestamp"] == event.timestamp)
+    confirmation_rows = rows[event_index:]
+
+    downside_target = event.close - event.breakdown_amount
+    invalidation_level = event.prior_support
+    target_hit_after_confirmation = any(_float(row["low"]) <= downside_target for row in confirmation_rows)
+    invalidation_hit_after_confirmation = any(_float(row["high"]) >= invalidation_level for row in confirmation_rows)
+    min_low_after_confirmation = min((_float(row["low"]) for row in confirmation_rows), default=float("nan"))
+    max_close_after_confirmation = max((_float(row["close"]) for row in confirmation_rows), default=float("nan"))
+
+    return {
+        "downside_target": downside_target,
+        "invalidation_level": invalidation_level,
+        "target_hit_after_confirmation": target_hit_after_confirmation,
+        "invalidation_hit_after_confirmation": invalidation_hit_after_confirmation,
+        "min_low_after_confirmation": min_low_after_confirmation,
+        "max_close_after_confirmation": max_close_after_confirmation,
+    }
+
+
+def select_strict_bearish_breakdown_candidates(
+    repo_root: Path,
+    symbols: Iterable[str] = DEFAULT_DISCOVERY_SYMBOLS,
+    lookbacks: Iterable[int] = LOOKBACKS,
+    limit: int = 4,
+) -> list[StrictBearishBreakdownCandidate]:
+    """Select strict bearish breakdowns that hit target after confirmation without invalidation."""
+
+    best_by_symbol: dict[str, tuple[float, StrictBearishBreakdownCandidate]] = {}
+    for symbol in symbols:
+        five_min_path = resolve_historical_market_data_paths(repo_root, symbol).get("5Min")
+        if five_min_path is None:
+            continue
+        rows = _load_rows(five_min_path)
+        rows.sort(key=lambda row: _parse_ts(row["timestamp"]))
+        for event in discover_close_below_support_events_for_symbol(repo_root, symbol, lookbacks):
+            metrics = _strict_bearish_confirmation_metrics_from_rows(rows, event)
+            downside_target = float(metrics["downside_target"])
+            invalidation_level = float(metrics["invalidation_level"])
+            target_hit = bool(metrics["target_hit_after_confirmation"])
+            invalidation_hit = bool(metrics["invalidation_hit_after_confirmation"])
+            if not _strict_bearish_geometry_ok(event.prior_support, event.close, downside_target, invalidation_level):
+                continue
+            if not target_hit or invalidation_hit:
+                continue
+
+            candidate = StrictBearishBreakdownCandidate(
+                symbol=event.symbol,
+                event_timestamp=event.timestamp,
+                prior_support=event.prior_support,
+                breakdown_close=event.close,
+                downside_target=downside_target,
+                invalidation_level=invalidation_level,
+                target_hit_after_confirmation=target_hit,
+                invalidation_hit_after_confirmation=invalidation_hit,
+                min_low_after_confirmation=float(metrics["min_low_after_confirmation"]),
+                max_close_after_confirmation=float(metrics["max_close_after_confirmation"]),
+                suggested_classification="confirmed_breakdown",
+                reason_selected="strict confirmed bearish breakdown: target hit after confirmation and no invalidation after confirmation",
+            )
+            score = (candidate.prior_support - candidate.breakdown_close) * 10.0
+            current = best_by_symbol.get(symbol)
+            if current is None or score > current[0]:
+                best_by_symbol[symbol] = (score, candidate)
+
+    ranked = sorted(
+        (candidate for _score, candidate in best_by_symbol.values()),
+        key=lambda candidate: (-(candidate.prior_support - candidate.breakdown_close), candidate.symbol, candidate.event_timestamp),
+    )
+    return ranked[:limit]
+
+
+def render_strict_bearish_breakdown_candidates(candidates: list[StrictBearishBreakdownCandidate]) -> str:
+    lines = [
+        "# Strict Bearish Breakdown Candidates",
+        "",
+        f"strict_candidates_selected: {len(candidates)}",
+        "",
+        "| symbol | event_timestamp | prior_support | breakdown_close | downside_target | invalidation_level | target_hit_after_confirmation | invalidation_hit_after_confirmation | min_low_after_confirmation | max_close_after_confirmation | suggested_classification | reason_selected |",
+        "| --- | --- | ---: | ---: | ---: | ---: | --- | --- | ---: | ---: | --- | --- |",
+    ]
+    for candidate in candidates:
+        lines.append(
+            "| "
+            f"{candidate.symbol} | {candidate.event_timestamp} | {candidate.prior_support:.2f} | {candidate.breakdown_close:.2f} | {candidate.downside_target:.2f} | {candidate.invalidation_level:.2f} | "
+            f"{str(candidate.target_hit_after_confirmation).lower()} | {str(candidate.invalidation_hit_after_confirmation).lower()} | {candidate.min_low_after_confirmation:.2f} | {candidate.max_close_after_confirmation:.2f} | {candidate.suggested_classification} | {candidate.reason_selected} |"
+        )
+    lines.extend([
+        "",
+        "## Boundary",
+        "- Discovery only",
+        "- Strict bearish geometry required",
+        "- No trade signal",
+        "- No broker action allowed",
+    ])
+    return "\n".join(lines) + "\n"
+
+
+def write_strict_bearish_breakdown_candidates(repo_root: Path, candidates: list[StrictBearishBreakdownCandidate]) -> tuple[Path, Path]:
+    output_dir = repo_root / "runs" / "replay" / "discovery"
+    output_dir.mkdir(parents=True, exist_ok=True)
+    md_path = output_dir / "strict_bearish_breakdown_candidates.md"
+    csv_path = output_dir / "strict_bearish_breakdown_candidates.csv"
+    md_path.write_text(render_strict_bearish_breakdown_candidates(candidates))
+    with csv_path.open("w", newline="") as f:
+        writer = csv.DictWriter(
+            f,
+            fieldnames=[
+                "symbol",
+                "event_timestamp",
+                "prior_support",
+                "breakdown_close",
+                "downside_target",
+                "invalidation_level",
+                "target_hit_after_confirmation",
+                "invalidation_hit_after_confirmation",
+                "min_low_after_confirmation",
+                "max_close_after_confirmation",
+                "suggested_classification",
+                "reason_selected",
+            ],
+        )
+        writer.writeheader()
+        for candidate in candidates:
+            writer.writerow(
+                {
+                    "symbol": candidate.symbol,
+                    "event_timestamp": candidate.event_timestamp,
+                    "prior_support": f"{candidate.prior_support:.2f}",
+                    "breakdown_close": f"{candidate.breakdown_close:.2f}",
+                    "downside_target": f"{candidate.downside_target:.2f}",
+                    "invalidation_level": f"{candidate.invalidation_level:.2f}",
+                    "target_hit_after_confirmation": str(candidate.target_hit_after_confirmation).lower(),
+                    "invalidation_hit_after_confirmation": str(candidate.invalidation_hit_after_confirmation).lower(),
+                    "min_low_after_confirmation": f"{candidate.min_low_after_confirmation:.2f}",
+                    "max_close_after_confirmation": f"{candidate.max_close_after_confirmation:.2f}",
+                    "suggested_classification": candidate.suggested_classification,
+                    "reason_selected": candidate.reason_selected,
+                }
+            )
     return md_path, csv_path

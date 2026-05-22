@@ -28,8 +28,10 @@ from monster_strategy_lab.replay import (
     write_close_below_support_summary,
     write_draft_manual_review_packet,
     write_draft_replay_case,
+    select_strict_bearish_breakdown_candidates,
     write_replay_triage_summary,
 )
+from monster_strategy_lab.replay.discovery import _strict_bearish_geometry_ok
 from monster_strategy_lab.replay.batch import write_replay_evidence_matrix
 from monster_strategy_lab.validation import validate_candidate
 
@@ -732,3 +734,98 @@ def test_discovery_constraint_audit_preserves_broker_action_false_in_existing_hr
     for idx in range(20, 32):
         case = load_replay_case(REPO_ROOT / "replay/cases" / f"HR-{idx:03d}.md")
         assert case.broker_action_allowed is False
+
+
+def test_strict_bearish_selector_returns_only_valid_breakdowns_and_rejects_malformed_geometry(tmp_path: Path):
+    repo = tmp_path
+    artifact_root = repo / "published" / "monster_historical_data_smoke_v1.0"
+    full_1day = artifact_root / "symbols" / "TEST" / "1Day" / "TEST_1Day_2024.parquet"
+    full_5min = artifact_root / "symbols" / "TEST" / "5Min" / "TEST_5Min_2024.parquet"
+    full_1day.parent.mkdir(parents=True, exist_ok=True)
+    full_5min.parent.mkdir(parents=True, exist_ok=True)
+
+    pd.DataFrame(
+        [
+            {"symbol": "TEST", "timeframe": "1Day", "timestamp": "2024-02-01T05:00:00+00:00", "open": 10.0, "high": 10.6, "low": 9.8, "close": 10.4, "volume": 1, "trade_count": 1, "vwap": 10.2, "source": "alpaca", "feed": "iex", "adjustment": "raw", "downloaded_at": "2026-05-19T00:00:00+00:00"},
+            {"symbol": "TEST", "timeframe": "1Day", "timestamp": "2024-02-02T05:00:00+00:00", "open": 10.4, "high": 10.7, "low": 9.5, "close": 9.9, "volume": 1, "trade_count": 1, "vwap": 10.0, "source": "alpaca", "feed": "iex", "adjustment": "raw", "downloaded_at": "2026-05-19T00:00:00+00:00"},
+        ]
+    ).to_parquet(full_1day, index=False)
+
+    rows = []
+    start = datetime(2024, 2, 2, 14, 30, tzinfo=timezone.utc)
+    for idx in range(12):
+        ts = start + timedelta(minutes=5 * idx)
+        rows.append({"symbol": "TEST", "timeframe": "5Min", "timestamp": ts.isoformat(), "open": 10.2, "high": 10.4, "low": 10.05, "close": 10.1, "volume": 1, "trade_count": 1, "vwap": 10.1, "source": "alpaca", "feed": "iex", "adjustment": "raw", "downloaded_at": "2026-05-19T00:00:00+00:00"})
+    rows.append({"symbol": "TEST", "timeframe": "5Min", "timestamp": (start + timedelta(minutes=60)).isoformat(), "open": 10.0, "high": 10.0, "low": 9.45, "close": 9.5, "volume": 1, "trade_count": 1, "vwap": 9.7, "source": "alpaca", "feed": "iex", "adjustment": "raw", "downloaded_at": "2026-05-19T00:00:00+00:00"})
+    rows.append({"symbol": "TEST", "timeframe": "5Min", "timestamp": (start + timedelta(minutes=65)).isoformat(), "open": 9.5, "high": 9.8, "low": 8.8, "close": 9.25, "volume": 1, "trade_count": 1, "vwap": 9.1, "source": "alpaca", "feed": "iex", "adjustment": "raw", "downloaded_at": "2026-05-19T00:00:00+00:00"})
+    rows.append({"symbol": "TEST", "timeframe": "5Min", "timestamp": (start + timedelta(minutes=70)).isoformat(), "open": 9.25, "high": 9.7, "low": 9.1, "close": 9.3, "volume": 1, "trade_count": 1, "vwap": 9.3, "source": "alpaca", "feed": "iex", "adjustment": "raw", "downloaded_at": "2026-05-19T00:00:00+00:00"})
+    pd.DataFrame(rows).to_parquet(full_5min, index=False)
+
+    index_path = repo / "data_refs" / "historical_market_data" / "artifact_index.yaml"
+    index_path.parent.mkdir(parents=True, exist_ok=True)
+    index_path.write_text(
+        yaml.safe_dump(
+            {
+                "schema": "historical_market_data_artifact_index_v1",
+                "status": "active",
+                "artifact_root": str(artifact_root),
+                "symbols": ["TEST"],
+                "timeframes": ["1Day", "5Min"],
+                "allowed_for_replay": ["1Day", "5Min"],
+                "blocked_for_replay": [],
+                "items": [
+                    {"symbol": "TEST", "timeframe": "1Day", "path": str(full_1day), "file_type": "parquet", "artifact_kind": "full"},
+                    {"symbol": "TEST", "timeframe": "5Min", "path": str(full_5min), "file_type": "parquet", "artifact_kind": "full"},
+                ],
+            },
+            sort_keys=False,
+        )
+    )
+
+    configs = repo / "configs"
+    configs.mkdir(parents=True, exist_ok=True)
+    configs.joinpath("replay_discovery.yaml").write_text(
+        "artifact_index_path: data_refs/historical_market_data/artifact_index.yaml\n"
+        f"replay_data_root: {artifact_root}\n"
+        f"handoff_manifest_path: {artifact_root / 'strategy_lab_handoff.yaml'}\n"
+        "symbols:\n"
+        "  - TEST\n"
+        "lookback_bars: [12]\n"
+        "min_calendar_days_between_cases: 30\n"
+        "max_cases_per_symbol_per_month: 1\n"
+        "max_cases_per_symbol_total: 3\n"
+        "avoid_existing_replay_windows: true\n"
+        "preferred_sides:\n"
+        "  - bearish\n"
+        "required_timeframes:\n"
+        "  - 1Day\n"
+        "  - 5Min\n"
+    )
+    artifact_root.mkdir(parents=True, exist_ok=True)
+    (artifact_root / "strategy_lab_handoff.yaml").write_text(
+        "artifact_version: v1.0\n"
+        f"artifact_root: {artifact_root}\n"
+        "allowed_for_replay:\n"
+        "  - 1Day\n"
+        "  - 5Min\n"
+        "blocked_for_replay:\n"
+        "  - 1Min\n"
+        "symbols:\n"
+        "  - TEST\n"
+        "full_data_paths:\n"
+        "  TEST:\n"
+        "    1Day:\n"
+        f"      - {full_1day}\n"
+        "    5Min:\n"
+        f"      - {full_5min}\n"
+    )
+
+    candidates = select_strict_bearish_breakdown_candidates(repo, symbols=("TEST",), lookbacks=(12,), limit=4)
+    assert len(candidates) == 1
+    candidate = candidates[0]
+    assert candidate.symbol == "TEST"
+    assert candidate.target_hit_after_confirmation is True
+    assert candidate.invalidation_hit_after_confirmation is False
+    assert _strict_bearish_geometry_ok(candidate.prior_support, candidate.breakdown_close, candidate.downside_target, candidate.invalidation_level)
+    assert candidate.suggested_classification == "confirmed_breakdown"
+    assert not _strict_bearish_geometry_ok(190.55, 193.38, 195.28, 190.45)
