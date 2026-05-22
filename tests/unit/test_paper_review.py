@@ -30,12 +30,15 @@ def test_only_ready_candidates_enter_paper_review_queue():
         _case_path("HR-017"),
         _case_path("HR-018"),
         _case_path("HR-019"),
+        _case_path("HR-021"),
+        _case_path("HR-022"),
+        _case_path("HR-024"),
     ]
     md_path, csv_path, rows = write_paper_review_queue(REPO_ROOT, case_paths)
 
     assert md_path.exists()
     assert csv_path.exists()
-    assert [row.candidate_id for row in rows] == ["PTC-004", "PTC-005", "PTC-009", "PTC-017", "PTC-019"]
+    assert [row.candidate_id for row in rows] == ["PTC-004", "PTC-005", "PTC-009", "PTC-017", "PTC-019", "PTC-021", "PTC-022", "PTC-024"]
     assert all(row.paper_review_status == PAPER_REVIEW_STATUS_PENDING_HUMAN_APPROVAL for row in rows)
     assert all(row.broker_action_allowed is False for row in rows)
     assert all(row.candidate_id not in {"PTC-016", "PTC-018"} for row in rows)

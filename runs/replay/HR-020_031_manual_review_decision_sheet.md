@@ -4,10 +4,10 @@
 | replay_id | symbol | side | date | setup_type | prior support/resistance | breakout/breakdown close | target price | invalidation level | target_hit_after_confirmation | invalidation_hit_after_confirmation | max_favorable_move | suggested_classification | initial recommendation | concise reason |
 | --- | --- | --- | --- | --- | ---: | ---: | ---: | ---: | --- | --- | ---: | --- | --- | --- |
 | HR-020 | AVGO | bullish | 2023-05-30 | close_above_resistance | 799.61 | 920.10 | 922.00 | 799.51 | false | false | nan | watch_no_trigger | likely_target_not_hit | no target hit after the setup window |
-| HR-021 | GOOGL | bullish | 2023-07-25 | close_above_resistance | 121.03 | 123.22 | 125.12 | 120.93 | true | false | 7.55 | confirmed_breakout | likely_confirmed | target hit cleanly after confirmation |
-| HR-022 | AMZN | bullish | 2023-08-03 | close_above_resistance | 126.44 | 129.92 | 131.82 | 126.34 | true | false | 8.89 | confirmed_breakout | likely_confirmed | target hit cleanly after confirmation |
+| HR-021 | GOOGL | bullish | 2023-07-25 | close_above_resistance | 121.03 | 123.22 | 125.12 | 120.93 | true | false | 7.55 | confirmed_breakout | confirmed | packet-derived manual review accepted; target hit after confirmation |
+| HR-022 | AMZN | bullish | 2023-08-03 | close_above_resistance | 126.44 | 129.92 | 131.82 | 126.34 | true | false | 8.89 | confirmed_breakout | confirmed | packet-derived manual review accepted; target hit after confirmation |
 | HR-023 | TSLA | bullish | 2023-09-11 | close_above_resistance | 260.67 | 274.93 | 276.82 | 260.57 | false | false | nan | watch_no_trigger | likely_target_not_hit | no target hit after the setup window |
-| HR-024 | MSFT | bullish | 2023-10-24 | close_above_resistance | 327.60 | 331.90 | 333.80 | 327.50 | true | false | 14.68 | confirmed_breakout | likely_confirmed | target hit cleanly after confirmation |
+| HR-024 | MSFT | bullish | 2023-10-24 | close_above_resistance | 327.60 | 331.90 | 333.80 | 327.50 | true | false | 14.68 | confirmed_breakout | confirmed | packet-derived manual review accepted; target hit after confirmation |
 | HR-025 | AAPL | bullish | 2023-12-05 | close_above_resistance | 190.18 | 194.50 | 196.40 | 190.08 | false | false | nan | watch_no_trigger | likely_target_not_hit | no target hit after the setup window |
 | HR-026 | SPY | bearish | 2023-07-06 | close_below_support | 437.07 | 440.12 | 418.00 | 437.02 | false | false | nan | contradicted | needs_visual_review | packet contradicts the setup boundary |
 | HR-027 | IWM | bearish | 2023-08-08 | close_below_support | 190.55 | 193.38 | 195.28 | 190.45 | false | false | nan | watch_no_trigger | likely_target_not_hit | no target hit after the setup window |
@@ -34,5 +34,5 @@ HR-026, HR-030
 - HR-030
 
 ## Boundary
-- All HR-020 through HR-031 remain NOT_VERIFIED, manual_review_status pending, broker_action_allowed false.
-- No promotion or discovery changes were made.
+- HR-021, HR-022, and HR-024 are now VERIFIED, manual_review_status completed, replay_outcome confirmed, and broker_action_allowed false.
+- No broker or Alpaca pathway was added.

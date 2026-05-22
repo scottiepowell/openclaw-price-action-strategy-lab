@@ -169,7 +169,7 @@ def _rows_to_csv(rows: list[PaperReadinessResult]) -> str:
     from io import StringIO
 
     buf = StringIO()
-    writer = csv.DictWriter(buf, fieldnames=fieldnames)
+    writer = csv.DictWriter(buf, fieldnames=fieldnames, lineterminator="\n")
     writer.writeheader()
     for row in rows:
         writer.writerow(

@@ -517,11 +517,18 @@ def test_handoff_manifest_and_generated_cases_are_not_verified_and_block_broker_
         assert case.real_market_evidence is True
 
 
-def test_hr_020_through_hr_031_cases_remain_not_verified_and_block_broker_action():
+def test_hr_020_through_hr_031_cases_reflect_promotion_where_applicable_and_keep_broker_action_false():
+    promoted = {21, 22, 24}
     for idx in range(20, 32):
         case = load_replay_case(REPO_ROOT / "replay/cases" / f"HR-{idx:03d}.md")
-        assert case.replay_status == "NOT_VERIFIED"
-        assert case.manual_review_status == "pending"
+        if idx in promoted:
+            assert case.replay_status == "VERIFIED"
+            assert case.manual_review_status == "completed"
+            assert case.replay_outcome == "confirmed"
+            assert case.classification == "confirmed_breakout"
+        else:
+            assert case.replay_status == "NOT_VERIFIED"
+            assert case.manual_review_status == "pending"
         assert case.broker_action_allowed is False
         assert case.evidence_type == "real_market_replay"
         assert case.real_market_evidence is True

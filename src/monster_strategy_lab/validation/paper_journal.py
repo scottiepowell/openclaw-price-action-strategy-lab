@@ -132,7 +132,7 @@ def _rows_to_csv(rows: list[PaperWatchJournalRow]) -> str:
     from io import StringIO
 
     buf = StringIO()
-    writer = csv.DictWriter(buf, fieldnames=fieldnames)
+    writer = csv.DictWriter(buf, fieldnames=fieldnames, lineterminator="\n")
     writer.writeheader()
     for row in rows:
         writer.writerow({name: getattr(row, name) if name != "broker_action_allowed" else _bool_text(row.broker_action_allowed) for name in fieldnames})

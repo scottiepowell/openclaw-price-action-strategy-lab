@@ -395,7 +395,7 @@ def _render_matrix_csv(rows: list[dict[str, str]]) -> str:
         "next_action",
     ]
     buffer = StringIO()
-    writer = csv.DictWriter(buffer, fieldnames=fieldnames)
+    writer = csv.DictWriter(buffer, fieldnames=fieldnames, lineterminator="\n")
     writer.writeheader()
     for row in rows:
         writer.writerow({name: row.get(name, "") for name in fieldnames})

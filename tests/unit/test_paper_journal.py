@@ -17,13 +17,13 @@ def _case_path(replay_id: str) -> Path:
 
 
 def test_only_paper_review_queued_candidates_get_journal_templates():
-    case_paths = [_case_path(replay_id) for replay_id in ["HR-001", "HR-002", "HR-003", "HR-004", "HR-005", "HR-006", "HR-008", "HR-009", "HR-016", "HR-017", "HR-018", "HR-019"]]
+    case_paths = [_case_path(replay_id) for replay_id in ["HR-001", "HR-002", "HR-003", "HR-004", "HR-005", "HR-006", "HR-008", "HR-009", "HR-016", "HR-017", "HR-018", "HR-019", "HR-021", "HR-022", "HR-024"]]
     md_path, csv_path, readme_path, rows = write_paper_watch_journal(REPO_ROOT, case_paths)
 
     assert md_path.exists()
     assert csv_path.exists()
     assert readme_path.exists()
-    assert [row.candidate_id for row in rows] == ["PTC-004", "PTC-005", "PTC-009", "PTC-017", "PTC-019"]
+    assert [row.candidate_id for row in rows] == ["PTC-004", "PTC-005", "PTC-009", "PTC-017", "PTC-019", "PTC-021", "PTC-022", "PTC-024"]
     assert all(row.watch_status == WATCH_STATUS_PENDING for row in rows)
     assert all(row.broker_action_allowed is False for row in rows)
     assert all(row.candidate_id not in {"PTC-016", "PTC-018"} for row in rows)

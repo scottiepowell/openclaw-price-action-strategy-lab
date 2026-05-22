@@ -388,16 +388,16 @@
 - direction: long
 - side: bullish
 - setup_type: close_above_resistance
-- replay_status: NOT_VERIFIED
-- replay_outcome: insufficient
-- classification: candidate_for_manual_review
-- manual_review_status: pending
-- target_hit_after_confirmation: false
+- replay_status: VERIFIED
+- replay_outcome: confirmed
+- classification: confirmed_breakout
+- manual_review_status: completed
+- target_hit_after_confirmation: true
 - invalidation_hit_after_confirmation: false
 - evidence_type: real_market_replay
 - real_market_evidence: true
-- paper_readiness_impact: manual review pending
-- next_action: perform manual visual review
+- paper_readiness_impact: potentially promotable after manual gates
+- next_action: manual visual review
 
 ## HR-022
 - replay_id: HR-022
@@ -407,16 +407,16 @@
 - direction: long
 - side: bullish
 - setup_type: close_above_resistance
-- replay_status: NOT_VERIFIED
-- replay_outcome: insufficient
-- classification: candidate_for_manual_review
-- manual_review_status: pending
-- target_hit_after_confirmation: false
+- replay_status: VERIFIED
+- replay_outcome: confirmed
+- classification: confirmed_breakout
+- manual_review_status: completed
+- target_hit_after_confirmation: true
 - invalidation_hit_after_confirmation: false
 - evidence_type: real_market_replay
 - real_market_evidence: true
-- paper_readiness_impact: manual review pending
-- next_action: perform manual visual review
+- paper_readiness_impact: potentially promotable after manual gates
+- next_action: manual visual review
 
 ## HR-023
 - replay_id: HR-023
@@ -445,16 +445,16 @@
 - direction: long
 - side: bullish
 - setup_type: close_above_resistance
-- replay_status: NOT_VERIFIED
-- replay_outcome: insufficient
-- classification: candidate_for_manual_review
-- manual_review_status: pending
-- target_hit_after_confirmation: false
+- replay_status: VERIFIED
+- replay_outcome: confirmed
+- classification: confirmed_breakout
+- manual_review_status: completed
+- target_hit_after_confirmation: true
 - invalidation_hit_after_confirmation: false
 - evidence_type: real_market_replay
 - real_market_evidence: true
-- paper_readiness_impact: manual review pending
-- next_action: perform manual visual review
+- paper_readiness_impact: potentially promotable after manual gates
+- next_action: manual visual review
 
 ## HR-025
 - replay_id: HR-025
@@ -592,8 +592,8 @@
 ## Coverage Summary
 
 ### bullish_confirmed_breakout_target_hit
-- count: 3
-- replay_ids: HR-004, HR-005, HR-017
+- count: 6
+- replay_ids: HR-004, HR-005, HR-017, HR-021, HR-022, HR-024
 - status: covered
 
 ### bullish_breakout_no_target_hit
@@ -647,8 +647,8 @@
 - status: needs_more_examples
 
 ### insufficient_coverage
-- count: 19
-- replay_ids: HR-003, HR-010, HR-011, HR-012, HR-013, HR-014, HR-015, HR-020, HR-021, HR-022, HR-023, HR-024, HR-025, HR-026, HR-027, HR-028, HR-029, HR-030, HR-031
+- count: 16
+- replay_ids: HR-003, HR-010, HR-011, HR-012, HR-013, HR-014, HR-015, HR-020, HR-023, HR-025, HR-026, HR-027, HR-028, HR-029, HR-030, HR-031
 - status: covered
 
 ### ambiguous
@@ -693,10 +693,10 @@
 
 ### count by classification
 - ambiguous: 1
-- candidate_for_manual_review: 18
+- candidate_for_manual_review: 15
 - confirmed_breakdown: 2
 - confirmed_breakdown_no_target_hit: 1
-- confirmed_breakout: 3
+- confirmed_breakout: 6
 - confirmed_breakout_no_target_hit: 1
 - failed_breakdown_reclaim: 2
 - insufficient: 1
