@@ -361,6 +361,234 @@
 - paper_readiness_impact: potentially promotable after manual gates
 - next_action: manual visual review
 
+## HR-020
+- replay_id: HR-020
+- related_candidate_id: PTC-020
+- symbol: AVGO
+- date_window: 2023-05-30 to 2023-05-30
+- direction: long
+- side: bullish
+- setup_type: close_above_resistance
+- replay_status: NOT_VERIFIED
+- replay_outcome: insufficient
+- classification: candidate_for_manual_review
+- manual_review_status: pending
+- target_hit_after_confirmation: false
+- invalidation_hit_after_confirmation: false
+- evidence_type: real_market_replay
+- real_market_evidence: true
+- paper_readiness_impact: manual review pending
+- next_action: perform manual visual review
+
+## HR-021
+- replay_id: HR-021
+- related_candidate_id: PTC-021
+- symbol: GOOGL
+- date_window: 2023-07-25 to 2023-07-25
+- direction: long
+- side: bullish
+- setup_type: close_above_resistance
+- replay_status: NOT_VERIFIED
+- replay_outcome: insufficient
+- classification: candidate_for_manual_review
+- manual_review_status: pending
+- target_hit_after_confirmation: false
+- invalidation_hit_after_confirmation: false
+- evidence_type: real_market_replay
+- real_market_evidence: true
+- paper_readiness_impact: manual review pending
+- next_action: perform manual visual review
+
+## HR-022
+- replay_id: HR-022
+- related_candidate_id: PTC-022
+- symbol: AMZN
+- date_window: 2023-08-03 to 2023-08-03
+- direction: long
+- side: bullish
+- setup_type: close_above_resistance
+- replay_status: NOT_VERIFIED
+- replay_outcome: insufficient
+- classification: candidate_for_manual_review
+- manual_review_status: pending
+- target_hit_after_confirmation: false
+- invalidation_hit_after_confirmation: false
+- evidence_type: real_market_replay
+- real_market_evidence: true
+- paper_readiness_impact: manual review pending
+- next_action: perform manual visual review
+
+## HR-023
+- replay_id: HR-023
+- related_candidate_id: PTC-023
+- symbol: TSLA
+- date_window: 2023-09-11 to 2023-09-11
+- direction: long
+- side: bullish
+- setup_type: close_above_resistance
+- replay_status: NOT_VERIFIED
+- replay_outcome: insufficient
+- classification: candidate_for_manual_review
+- manual_review_status: pending
+- target_hit_after_confirmation: false
+- invalidation_hit_after_confirmation: false
+- evidence_type: real_market_replay
+- real_market_evidence: true
+- paper_readiness_impact: manual review pending
+- next_action: perform manual visual review
+
+## HR-024
+- replay_id: HR-024
+- related_candidate_id: PTC-024
+- symbol: MSFT
+- date_window: 2023-10-24 to 2023-10-24
+- direction: long
+- side: bullish
+- setup_type: close_above_resistance
+- replay_status: NOT_VERIFIED
+- replay_outcome: insufficient
+- classification: candidate_for_manual_review
+- manual_review_status: pending
+- target_hit_after_confirmation: false
+- invalidation_hit_after_confirmation: false
+- evidence_type: real_market_replay
+- real_market_evidence: true
+- paper_readiness_impact: manual review pending
+- next_action: perform manual visual review
+
+## HR-025
+- replay_id: HR-025
+- related_candidate_id: PTC-025
+- symbol: AAPL
+- date_window: 2023-12-05 to 2023-12-05
+- direction: long
+- side: bullish
+- setup_type: close_above_resistance
+- replay_status: NOT_VERIFIED
+- replay_outcome: insufficient
+- classification: candidate_for_manual_review
+- manual_review_status: pending
+- target_hit_after_confirmation: false
+- invalidation_hit_after_confirmation: false
+- evidence_type: real_market_replay
+- real_market_evidence: true
+- paper_readiness_impact: manual review pending
+- next_action: perform manual visual review
+
+## HR-026
+- replay_id: HR-026
+- related_candidate_id: PTC-026
+- symbol: SPY
+- date_window: 2023-07-06 to 2023-07-06
+- direction: short
+- side: bearish
+- setup_type: close_below_support
+- replay_status: NOT_VERIFIED
+- replay_outcome: insufficient
+- classification: candidate_for_manual_review
+- manual_review_status: pending
+- target_hit_after_confirmation: false
+- invalidation_hit_after_confirmation: false
+- evidence_type: real_market_replay
+- real_market_evidence: true
+- paper_readiness_impact: manual review pending
+- next_action: perform manual visual review
+
+## HR-027
+- replay_id: HR-027
+- related_candidate_id: PTC-027
+- symbol: IWM
+- date_window: 2023-08-08 to 2023-08-08
+- direction: short
+- side: bearish
+- setup_type: close_below_support
+- replay_status: NOT_VERIFIED
+- replay_outcome: insufficient
+- classification: candidate_for_manual_review
+- manual_review_status: pending
+- target_hit_after_confirmation: false
+- invalidation_hit_after_confirmation: false
+- evidence_type: real_market_replay
+- real_market_evidence: true
+- paper_readiness_impact: manual review pending
+- next_action: perform manual visual review
+
+## HR-028
+- replay_id: HR-028
+- related_candidate_id: PTC-028
+- symbol: AAPL
+- date_window: 2023-09-07 to 2023-09-07
+- direction: short
+- side: bearish
+- setup_type: close_below_support
+- replay_status: NOT_VERIFIED
+- replay_outcome: insufficient
+- classification: candidate_for_manual_review
+- manual_review_status: pending
+- target_hit_after_confirmation: false
+- invalidation_hit_after_confirmation: false
+- evidence_type: real_market_replay
+- real_market_evidence: true
+- paper_readiness_impact: manual review pending
+- next_action: perform manual visual review
+
+## HR-029
+- replay_id: HR-029
+- related_candidate_id: PTC-029
+- symbol: QQQ
+- date_window: 2023-10-06 to 2023-10-06
+- direction: short
+- side: bearish
+- setup_type: close_below_support
+- replay_status: NOT_VERIFIED
+- replay_outcome: insufficient
+- classification: candidate_for_manual_review
+- manual_review_status: pending
+- target_hit_after_confirmation: false
+- invalidation_hit_after_confirmation: false
+- evidence_type: real_market_replay
+- real_market_evidence: true
+- paper_readiness_impact: manual review pending
+- next_action: perform manual visual review
+
+## HR-030
+- replay_id: HR-030
+- related_candidate_id: PTC-030
+- symbol: NVDA
+- date_window: 2023-10-17 to 2023-10-17
+- direction: short
+- side: bearish
+- setup_type: close_below_support
+- replay_status: NOT_VERIFIED
+- replay_outcome: insufficient
+- classification: candidate_for_manual_review
+- manual_review_status: pending
+- target_hit_after_confirmation: false
+- invalidation_hit_after_confirmation: false
+- evidence_type: real_market_replay
+- real_market_evidence: true
+- paper_readiness_impact: manual review pending
+- next_action: perform manual visual review
+
+## HR-031
+- replay_id: HR-031
+- related_candidate_id: PTC-031
+- symbol: META
+- date_window: 2023-12-04 to 2023-12-04
+- direction: short
+- side: bearish
+- setup_type: close_below_support
+- replay_status: NOT_VERIFIED
+- replay_outcome: insufficient
+- classification: candidate_for_manual_review
+- manual_review_status: pending
+- target_hit_after_confirmation: false
+- invalidation_hit_after_confirmation: false
+- evidence_type: real_market_replay
+- real_market_evidence: true
+- paper_readiness_impact: manual review pending
+- next_action: perform manual visual review
+
 ## Coverage Summary
 
 ### bullish_confirmed_breakout_target_hit
@@ -419,8 +647,8 @@
 - status: needs_more_examples
 
 ### insufficient_coverage
-- count: 7
-- replay_ids: HR-003, HR-010, HR-011, HR-012, HR-013, HR-014, HR-015
+- count: 19
+- replay_ids: HR-003, HR-010, HR-011, HR-012, HR-013, HR-014, HR-015, HR-020, HR-021, HR-022, HR-023, HR-024, HR-025, HR-026, HR-027, HR-028, HR-029, HR-030, HR-031
 - status: covered
 
 ### ambiguous
@@ -434,34 +662,38 @@
 - clustered_windows_warning: false
 
 ### count by year
-- 2023: 19
+- 2023: 31
 
 ### count by month
-- 2023-05: 9
+- 2023-05: 10
 - 2023-06: 1
-- 2023-07: 1
-- 2023-08: 1
-- 2023-09: 1
-- 2023-10: 2
+- 2023-07: 3
+- 2023-08: 3
+- 2023-09: 3
+- 2023-10: 5
 - 2023-11: 2
-- 2023-12: 2
+- 2023-12: 4
 
 ### count by symbol
-- AAPL: 1
-- AVGO: 2
-- IWM: 1
-- META: 9
-- MSFT: 1
-- NVDA: 2
-- SPY: 3
+- AAPL: 3
+- AMZN: 1
+- AVGO: 3
+- GOOGL: 1
+- IWM: 2
+- META: 10
+- MSFT: 2
+- NVDA: 3
+- QQQ: 1
+- SPY: 4
+- TSLA: 1
 
 ### count by side
-- bearish: 8
-- bullish: 11
+- bearish: 14
+- bullish: 17
 
 ### count by classification
 - ambiguous: 1
-- candidate_for_manual_review: 6
+- candidate_for_manual_review: 18
 - confirmed_breakdown: 2
 - confirmed_breakdown_no_target_hit: 1
 - confirmed_breakout: 3

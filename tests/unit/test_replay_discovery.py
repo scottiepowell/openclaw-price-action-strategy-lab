@@ -516,6 +516,34 @@ def test_handoff_manifest_and_generated_cases_are_not_verified_and_block_broker_
         assert case.real_market_evidence is True
 
 
+def test_hr_020_through_hr_031_cases_remain_not_verified_and_block_broker_action():
+    for idx in range(20, 32):
+        case = load_replay_case(REPO_ROOT / "replay/cases" / f"HR-{idx:03d}.md")
+        assert case.replay_status == "NOT_VERIFIED"
+        assert case.manual_review_status == "pending"
+        assert case.broker_action_allowed is False
+        assert case.evidence_type == "real_market_replay"
+        assert case.real_market_evidence is True
+
+
+def test_new_batch_triage_summary_and_evidence_matrix_include_hr_020_through_hr_031():
+    case_paths = [REPO_ROOT / "replay/cases" / f"HR-{idx:03d}.md" for idx in range(20, 32)]
+    triage_path = write_replay_triage_summary(
+        REPO_ROOT,
+        case_paths,
+        filename="HR-020_031_triage_summary.md",
+        title="HR-020 through HR-031 Triage Summary",
+    )
+    triage_text = triage_path.read_text()
+    for idx in range(20, 32):
+        assert f"HR-{idx:03d}" in triage_text
+
+    matrix_path = write_replay_evidence_matrix(REPO_ROOT)
+    matrix_text = matrix_path.read_text()
+    for idx in range(20, 32):
+        assert f"HR-{idx:03d}" in matrix_text
+
+
 def test_old_sample_files_are_not_used_when_full_handoff_index_is_present(tmp_path: Path):
     repo = tmp_path
     full_root = repo / "full"
