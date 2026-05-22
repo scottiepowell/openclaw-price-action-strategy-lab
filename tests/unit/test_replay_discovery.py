@@ -20,6 +20,7 @@ from monster_strategy_lab.replay import (
     select_date_diversified_candidates,
     select_top_bearish_candidates,
     select_top_candidates,
+    write_discovery_constraint_audit,
     write_date_diversified_candidates,
     write_bearish_draft_replay_case,
     write_bearish_manual_review_packet,
@@ -701,3 +702,26 @@ def test_handoff_manifest_is_respected_and_blocks_1min_and_sample_exports(tmp_pa
     assert selected
     assert all(candidate.symbol == "TEST" for candidate in selected)
     assert all(not candidate.timestamp.startswith("2023-05") for candidate in selected)
+
+
+def test_discovery_constraint_audit_is_generated_and_reports_key_counts():
+    md_path, csv_path = write_discovery_constraint_audit(REPO_ROOT)
+    assert md_path.exists()
+    assert csv_path.exists()
+
+    text = md_path.read_text()
+    assert "| raw candidates | 898 | 261 | 1159 |" in text
+    assert "| final selected candidates | 6 | 6 | 12 |" in text
+    assert "HR-020..HR-031" in text
+    assert "avoid-existing-window" in text or "avoid_existing_replay_windows" in text
+
+    csv_text = csv_path.read_text()
+    assert "row_type,side,symbol,timestamp" in csv_text
+    assert "near_miss" in csv_text
+
+
+def test_discovery_constraint_audit_preserves_broker_action_false_in_existing_hr_cases():
+    write_discovery_constraint_audit(REPO_ROOT)
+    for idx in range(20, 32):
+        case = load_replay_case(REPO_ROOT / "replay/cases" / f"HR-{idx:03d}.md")
+        assert case.broker_action_allowed is False

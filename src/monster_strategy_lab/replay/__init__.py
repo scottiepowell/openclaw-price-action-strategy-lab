@@ -58,6 +58,7 @@ from .discovery import (
     write_draft_replay_case,
     write_bearish_draft_replay_case,
     write_bearish_manual_review_packet,
+    write_discovery_constraint_audit,
 )
 
 __all__ = [
@@ -110,6 +111,7 @@ __all__ = [
     "write_draft_replay_case",
     "write_bearish_draft_replay_case",
     "write_bearish_manual_review_packet",
+    "write_discovery_constraint_audit",
     "write_replay_batch_summary",
     "write_replay_evidence_matrix",
     "write_replay_case_data_quality_report",

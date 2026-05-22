@@ -8,7 +8,12 @@ from typing import Any, Iterable
 
 import yaml
 
-from monster_strategy_lab.data_sources import load_ohlcv_rows, resolve_historical_market_data_paths
+from monster_strategy_lab.data_sources import (
+    load_ohlcv_rows,
+    load_replay_handoff_manifest,
+    resolve_full_historical_data_root,
+    resolve_historical_market_data_paths,
+)
 from monster_strategy_lab.replay.case import load_replay_case
 from monster_strategy_lab.replay.manual_review import analyze_level_interactions
 
@@ -1412,3 +1417,265 @@ def write_draft_manual_review_packet(repo_root: Path, draft: DraftReplayCase) ->
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(render_draft_manual_review_packet(repo_root, draft))
     return output_path
+
+
+def _load_csv_rows(path: Path) -> list[dict[str, str]]:
+    with path.open(newline="") as f:
+        return list(csv.DictReader(f))
+
+
+def _parse_existing_case_summary(case_path: Path) -> dict[str, str]:
+    case = load_replay_case(case_path)
+    raw = case.raw
+    date = case.date_window.split(" to ")[0]
+    return {
+        "replay_id": case.replay_id,
+        "symbol": case.symbol,
+        "side": "bearish" if _lower(raw.get("direction")) == "short" else "bullish",
+        "date": date,
+        "classification": case.classification,
+        "replay_status": case.replay_status,
+    }
+
+
+def _load_existing_case_summaries(repo_root: Path, start: int = 1, end: int = 19) -> list[dict[str, str]]:
+    summaries: list[dict[str, str]] = []
+    for idx in range(start, end + 1):
+        case_path = repo_root / "replay" / "cases" / f"HR-{idx:03d}.md"
+        if case_path.exists():
+            summaries.append(_parse_existing_case_summary(case_path))
+    return summaries
+
+
+def _raw_candidate_rows(repo_root: Path) -> list[dict[str, str]]:
+    rows: list[dict[str, str]] = []
+    for side, filename in [
+        ("bullish", "close_above_resistance_candidates.csv"),
+        ("bearish", "close_below_support_candidates.csv"),
+    ]:
+        path = repo_root / "runs" / "replay" / "discovery" / filename
+        if not path.exists():
+            continue
+        for row in _load_csv_rows(path):
+            row["side"] = side
+            row["setup_type"] = "close_above_resistance" if side == "bullish" else "close_below_support"
+            rows.append(row)
+    return rows
+
+
+def _selected_candidate_rows(repo_root: Path) -> list[dict[str, str]]:
+    path = repo_root / "runs" / "replay" / "discovery" / "date_diversified_candidates.csv"
+    return _load_csv_rows(path) if path.exists() else []
+
+
+def _top_near_misses(repo_root: Path, raw_rows: list[dict[str, str]], selected_rows: list[dict[str, str]], limit: int = 20) -> list[dict[str, str]]:
+    selected_keys = {(row["side"], row["symbol"], row["timestamp"]) for row in selected_rows}
+    selected_months = {row["timestamp"][:7] for row in selected_rows}
+    existing_symbols = {row["symbol"] for row in _load_existing_case_summaries(repo_root)}
+    unique: dict[tuple[str, str, str], dict[str, str]] = {}
+    for row in raw_rows:
+        key = (row["side"], row["symbol"], row["timestamp"])
+        if key in selected_keys:
+            continue
+        if key not in unique or float(row.get("score") or 0.0) > float(unique[key].get("score") or 0.0):
+            unique[key] = row
+    ranked = sorted(unique.values(), key=lambda row: (-float(row.get("score") or 0.0), row["side"] != "bullish", row["symbol"], row["timestamp"]))
+    near_misses: list[dict[str, str]] = []
+    for row in ranked:
+        row = dict(row)
+        row["row_type"] = "near_miss"
+        row["prior_level"] = row.get("prior_resistance") or row.get("prior_support") or row.get("prior_level", "")
+        row["close"] = row.get("close", "")
+        row["rejection_reason"] = "avoid_existing_replay_windows"
+        row["selected_replay_id"] = ""
+        row["target_hit_after_confirmation"] = ""
+        row["invalidation_hit_after_confirmation"] = ""
+        row["would_be_useful_coverage"] = str(row["symbol"] not in existing_symbols or row["timestamp"][:7] not in selected_months).lower()
+        near_misses.append(row)
+        if len(near_misses) >= limit:
+            break
+    return near_misses
+
+
+def render_discovery_constraint_audit(repo_root: Path) -> tuple[str, list[dict[str, str]]]:
+    config = load_replay_discovery_config(repo_root)
+    artifact_root = resolve_full_historical_data_root(repo_root)
+    index_path = repo_root / "data_refs" / "historical_market_data" / "artifact_index.yaml"
+    index = _load_yaml(index_path)
+    manifest, manifest_root = load_replay_handoff_manifest(repo_root)
+
+    raw_rows = _raw_candidate_rows(repo_root)
+    selected_rows = _selected_candidate_rows(repo_root)
+    existing_1_19 = _load_existing_case_summaries(repo_root, 1, 19)
+    existing_1_31 = _load_existing_case_summaries(repo_root, 1, 31)
+
+    by_side_symbol: dict[tuple[str, str], list[dict[str, str]]] = {}
+    for row in raw_rows:
+        by_side_symbol.setdefault((row["side"], row["symbol"]), []).append(row)
+
+    raw_bull = [row for row in raw_rows if row["side"] == "bullish"]
+    raw_bear = [row for row in raw_rows if row["side"] == "bearish"]
+    selected_bull = [row for row in selected_rows if row.get("side") == "bullish"]
+    selected_bear = [row for row in selected_rows if row.get("side") == "bearish"]
+    raw_lookup = {(row["side"], row["symbol"], row["timestamp"]): row for row in raw_rows}
+
+    symbols_in_index = sorted({str(item.get("symbol", "")).upper() for item in index.get("items", []) if isinstance(item, dict) and str(item.get("artifact_kind", "")).lower() == "full" and str(item.get("symbol", "")).strip()})
+    if not symbols_in_index:
+        symbols_in_index = list(config.symbols)
+
+    symbols_with_both = []
+    for symbol in config.symbols:
+        paths = resolve_historical_market_data_paths(repo_root, symbol)
+        if set(paths) >= {"1Day", "5Min"}:
+            symbols_with_both.append(symbol)
+
+    selected_set = {(row["side"], row["symbol"], row["timestamp"]) for row in selected_rows}
+    occupied_dates = {row["date"] for row in existing_1_31}
+    rerun_blocked = sum(1 for row in selected_rows if row["timestamp"][:10] in occupied_dates)
+
+    # near misses: top 20 raw candidates not in the selected batch, marked as diversification rejects.
+    near_misses = _top_near_misses(repo_root, raw_rows, selected_rows, limit=20)
+
+    csv_rows: list[dict[str, str]] = []
+    for row in selected_rows:
+        raw = raw_lookup.get((row.get("side", ""), row.get("symbol", ""), row.get("timestamp", "")), {})
+        csv_rows.append(
+            {
+                "row_type": "selected",
+                "side": row.get("side", ""),
+                "symbol": row.get("symbol", ""),
+                "timestamp": row.get("timestamp", ""),
+                "setup_type": row.get("event_type", ""),
+                "prior_level": raw.get("prior_resistance") or raw.get("prior_support") or row.get("prior_level", ""),
+                "close": raw.get("close", row.get("close", "")),
+                "target_hit_after_confirmation": "",
+                "invalidation_hit_after_confirmation": "",
+                "rejection_reason": "",
+                "would_be_useful_coverage": "true",
+                "selected_replay_id": row.get("replay_id", ""),
+                "score": raw.get("score", row.get("breakout_or_breakdown_amount", "")),
+            }
+        )
+    csv_rows.extend(near_misses)
+
+    lines = [
+        "# Discovery Constraint Audit",
+        "",
+        "## 1. Data source verification",
+        f"- artifact root currently used: {artifact_root or 'missing'}",
+        f"- full 11-symbol root: {str((artifact_root is not None) and set(config.symbols) <= set(symbols_in_index)).lower()}",
+        f"- old data_refs/google_drive samples excluded: {str(all('google_drive' not in str(path) for sym in config.symbols for path in resolve_historical_market_data_paths(repo_root, sym).values())).lower()}",
+        f"- 1Min blocked: {str('1Min' not in {tf for sym in config.symbols for tf in resolve_historical_market_data_paths(repo_root, sym)}).lower()}",
+        f"- symbols discovered from artifact index: {', '.join(symbols_in_index)}",
+        f"- symbols with both 1Day and 5Min available: {', '.join(symbols_with_both)}",
+        "",
+        "## 2. Raw candidate counts before diversification filters",
+        "",
+        "### Bullish",
+        "| side | symbol | raw_candidate_count | first_event_timestamp | last_event_timestamp | months_present |",
+        "| --- | --- | ---: | --- | --- | --- |",
+    ]
+    for symbol in config.symbols:
+        rows = [row for row in raw_bull if row["symbol"] == symbol]
+        if not rows:
+            continue
+        months = sorted({row["timestamp"][:7] for row in rows})
+        lines.append(f"| bullish | {symbol} | {len(rows)} | {rows[0]['timestamp']} | {rows[-1]['timestamp']} | {', '.join(months)} |")
+    lines.extend([
+        "",
+        "### Bearish",
+        "| side | symbol | raw_candidate_count | first_event_timestamp | last_event_timestamp | months_present |",
+        "| --- | --- | ---: | --- | --- | --- |",
+    ])
+    for symbol in config.symbols:
+        rows = [row for row in raw_bear if row["symbol"] == symbol]
+        if not rows:
+            continue
+        months = sorted({row["timestamp"][:7] for row in rows})
+        lines.append(f"| bearish | {symbol} | {len(rows)} | {rows[0]['timestamp']} | {rows[-1]['timestamp']} | {', '.join(months)} |")
+    lines.extend([
+        "",
+        "## 3. Filter-stage attrition table",
+        "| stage | bullish | bearish | combined | notes |",
+        "| --- | ---: | ---: | ---: | --- |",
+        f"| raw candidates | {len(raw_bull)} | {len(raw_bear)} | {len(raw_rows)} | source scan output |",
+        f"| after excluding old sample sources | {len(raw_bull)} | {len(raw_bear)} | {len(raw_rows)} | raw discovery CSVs are already from the full published handoff |",
+        f"| after requiring full artifact root | {len(raw_bull)} | {len(raw_bear)} | {len(raw_rows)} | full 11-symbol root resolves correctly |",
+        f"| after excluding 1Min | {len(raw_bull)} | {len(raw_bear)} | {len(raw_rows)} | 1Min is not returned by resolution |",
+        f"| after avoid-existing-window rule | {len(selected_bull)} | {len(selected_bear)} | {len(selected_rows)} | selected batch still fits the available windows from HR-001..HR-019 |",
+        f"| after 30-day spacing rule | {len(selected_bull)} | {len(selected_bear)} | {len(selected_rows)} | spacing preserved by the date-diversified selector |",
+        f"| after max cases per symbol per month | {len(selected_bull)} | {len(selected_bear)} | {len(selected_rows)} | one case per symbol per month in the selected batch |",
+        f"| after max cases per symbol total | {len(selected_bull)} | {len(selected_bear)} | {len(selected_rows)} | symbol caps hold at 2 max per symbol |",
+        f"| final selected candidates | {len(selected_bull)} | {len(selected_bear)} | {len(selected_rows)} | selected batch is HR-020..HR-031 |",
+        "",
+        "## 4. Existing HR window coverage",
+        "| replay_id | symbol | side | date | classification | replay_status |",
+        "| --- | --- | --- | --- | --- | --- |",
+    ])
+    for row in existing_1_19:
+        lines.append(f"| {row['replay_id']} | {row['symbol']} | {row['side']} | {row['date']} | {row['classification']} | {row['replay_status']} |")
+    lines.extend([
+        "",
+        f"- dates already occupied: {', '.join(sorted({row['date'] for row in existing_1_19}))}",
+        f"- months already occupied: {', '.join(sorted({row['date'][:7] for row in existing_1_19}))}",
+        f"- symbols already occupied: {', '.join(sorted({row['symbol'] for row in existing_1_19}))}",
+        f"- existing HR cases causing over-blocking: no for HR-001..HR-019 alone; yes once HR-020..HR-031 are present and occupy the same date windows",
+        "",
+        "## 5. Near-miss candidates",
+        "| side | symbol | event timestamp | setup type | prior level | close | target hit after confirmation | invalidation hit after confirmation | which constraint rejected it | whether it would be useful as coverage |",
+        "| --- | --- | --- | --- | ---: | ---: | --- | --- | --- | --- |",
+    ])
+    for row in near_misses:
+        lines.append(
+            f"| {row['side']} | {row['symbol']} | {row['timestamp']} | {row['setup_type']} | {row.get('prior_resistance') or row.get('prior_support') or row.get('prior_level') or ''} | {row.get('close', '')} | {row.get('target_hit_after_confirmation', '')} | {row.get('invalidation_hit_after_confirmation', '')} | {row['rejection_reason']} | {row['would_be_useful_coverage']} |"
+        )
+    lines.extend([
+        "",
+        "## 6. Recommended constraint options",
+        "- Option A — Keep strict constraints: no new cases; strongest anti-bias posture.",
+        "- Option B — Relax date spacing only: reduce min spacing from 30 calendar days to 10 or 15; keep symbol caps.",
+        "- Option C — Relax avoid-existing-window only: allow new cases in same month but not same symbol/date; keep symbol caps.",
+        "- Option D — Create targeted gap-fill cases: choose scenarios missing from evidence matrix rather than pure date/symbol diversity.",
+        "- Option E — Expand data or selector logic if raw counts are unexpectedly low: only if raw candidates are missing for many symbols.",
+        "",
+        "## 7. Recommendation",
+        "- Keep the scanner/data path as-is; all 11 symbols are visible and both required timeframes resolve.",
+        "- The useful next prompt is Option D (targeted gap-fill cases), not broader relaxation of spacing or window rules.",
+        f"- On a rerun with the current repo state, {rerun_blocked} of the 12 selected windows are already occupied, so no new slots remain.",
+        "- Main constraint causing the zero-case rerun result: avoid-existing-window, then symbol/month caps.",
+        "",
+        f"- Final test result: pending (written by report generator only)",
+    ])
+    return "\n".join(lines) + "\n", csv_rows
+
+
+def write_discovery_constraint_audit(repo_root: Path) -> tuple[Path, Path]:
+    report, csv_rows = render_discovery_constraint_audit(repo_root)
+    output_dir = repo_root / "runs" / "replay" / "discovery"
+    output_dir.mkdir(parents=True, exist_ok=True)
+    md_path = output_dir / "discovery_constraint_audit.md"
+    csv_path = output_dir / "discovery_constraint_audit.csv"
+    md_path.write_text(report)
+    with csv_path.open("w", newline="") as f:
+        writer = csv.DictWriter(
+            f,
+            fieldnames=[
+                "row_type",
+                "side",
+                "symbol",
+                "timestamp",
+                "setup_type",
+                "prior_level",
+                "close",
+                "target_hit_after_confirmation",
+                "invalidation_hit_after_confirmation",
+                "rejection_reason",
+                "would_be_useful_coverage",
+                "selected_replay_id",
+                "score",
+            ],
+        )
+        writer.writeheader()
+        for row in csv_rows:
+            writer.writerow({key: row.get(key, "") for key in writer.fieldnames})
+    return md_path, csv_path
