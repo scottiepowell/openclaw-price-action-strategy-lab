@@ -35,11 +35,21 @@ def _load_and_assess(replay_id: str):
 
 
 def test_confirmed_breakout_and_breakdown_are_ready_for_paper_review():
-    for replay_id in ["HR-004", "HR-005", "HR-017", "HR-009", "HR-019"]:
+    for replay_id in ["HR-004", "HR-005", "HR-009", "HR-017", "HR-019", "HR-032", "HR-034", "HR-035"]:
         result = _load_and_assess(replay_id)
         assert result.readiness_status == READY_FOR_PAPER_REVIEW
         assert result.eligible_for_paper_review is True
         assert result.broker_action_allowed is False
+
+
+def test_target_not_hit_confirmation_blocks_paper_review():
+    result = _load_and_assess("HR-033")
+    assert result.replay_status == "VERIFIED"
+    assert result.replay_outcome == "insufficient"
+    assert result.classification == "confirmed_breakdown_no_target_hit"
+    assert result.readiness_status == BLOCKED_BY_TARGET_NOT_HIT
+    assert result.eligible_for_paper_review is False
+    assert result.broker_action_allowed is False
 
 
 def test_ambiguous_failed_reclaim_target_not_hit_and_watch_cases_block_paper_review():
@@ -95,16 +105,22 @@ def test_ready_matrix_marks_broker_action_false(tmp_path: Path):
     paths = [
         _case_path("HR-004"),
         _case_path("HR-005"),
+        _case_path("HR-009"),
         _case_path("HR-006"),
         _case_path("HR-008"),
-        _case_path("HR-009"),
         _case_path("HR-016"),
         _case_path("HR-017"),
         _case_path("HR-018"),
         _case_path("HR-019"),
+        _case_path("HR-032"),
+        _case_path("HR-033"),
+        _case_path("HR-034"),
+        _case_path("HR-035"),
     ]
     _, _, rows = write_paper_readiness_matrix(tmp_path, paths)
     assert rows
     assert all(row.broker_action_allowed is False for row in rows)
     assert any(row.readiness_status == READY_FOR_PAPER_REVIEW for row in rows)
-
+    ready_ids = {row.replay_id for row in rows if row.readiness_status == READY_FOR_PAPER_REVIEW}
+    assert {"HR-032", "HR-034", "HR-035"}.issubset(ready_ids)
+    assert "HR-033" not in ready_ids

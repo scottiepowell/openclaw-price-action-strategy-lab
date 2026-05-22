@@ -30,3 +30,7 @@ PTC-028,HR-028,AAPL,bearish,NOT_VERIFIED,insufficient,pending,pending,false,fals
 PTC-029,HR-029,QQQ,bearish,NOT_VERIFIED,insufficient,pending,pending,false,false,BLOCKED_BY_INSUFFICIENT_DATA,false,replay_status is NOT_VERIFIED,collect verified replay evidence and complete manual review
 PTC-030,HR-030,NVDA,bearish,NOT_VERIFIED,insufficient,pending,pending,false,false,BLOCKED_BY_INSUFFICIENT_DATA,false,replay_status is NOT_VERIFIED,collect verified replay evidence and complete manual review
 PTC-031,HR-031,META,bearish,NOT_VERIFIED,insufficient,pending,pending,false,false,BLOCKED_BY_INSUFFICIENT_DATA,false,replay_status is NOT_VERIFIED,collect verified replay evidence and complete manual review
+PTC-032,HR-032,TSLA,bearish,VERIFIED,confirmed,confirmed_breakdown,completed,true,false,READY_FOR_PAPER_REVIEW,false,none,paper review eligible; keep broker_action_allowed false
+PTC-033,HR-033,NVDA,bearish,VERIFIED,insufficient,confirmed_breakdown_no_target_hit,completed,false,false,BLOCKED_BY_TARGET_NOT_HIT,false,target was not hit after confirmation,wait for target to be hit after confirmation
+PTC-034,HR-034,AVGO,bearish,VERIFIED,confirmed,confirmed_breakdown,completed,true,false,READY_FOR_PAPER_REVIEW,false,none,paper review eligible; keep broker_action_allowed false
+PTC-035,HR-035,META,bearish,VERIFIED,confirmed,confirmed_breakdown,completed,true,false,READY_FOR_PAPER_REVIEW,false,none,paper review eligible; keep broker_action_allowed false

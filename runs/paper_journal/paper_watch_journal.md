@@ -12,6 +12,9 @@ Manual paper-watch tracking only. No orders, broker calls, or profitability clai
 | PWJ-006 | PTC-021 | HR-021 | GOOGL | bullish | close_above_resistance | READY_FOR_PAPER_REVIEW | pending_human_approval | pending | manual watch for close_above_resistance; no broker action | 123.22 | 125.12 | 120.93 |  |  |  |  |  | manual paper-watch journal only; no order submission | false |
 | PWJ-007 | PTC-022 | HR-022 | AMZN | bullish | close_above_resistance | READY_FOR_PAPER_REVIEW | pending_human_approval | pending | manual watch for close_above_resistance; no broker action | 129.92 | 131.82 | 126.34 |  |  |  |  |  | manual paper-watch journal only; no order submission | false |
 | PWJ-008 | PTC-024 | HR-024 | MSFT | bullish | close_above_resistance | READY_FOR_PAPER_REVIEW | pending_human_approval | pending | manual watch for close_above_resistance; no broker action | 331.90 | 333.80 | 327.50 |  |  |  |  |  | manual paper-watch journal only; no order submission | false |
+| PWJ-009 | PTC-032 | HR-032 | TSLA | bearish | close_below_support | READY_FOR_PAPER_REVIEW | pending_human_approval | pending | manual watch for close_below_support; no broker action | 280.48 | 269.90 | 301.64 |  |  |  |  |  | manual paper-watch journal only; no order submission | false |
+| PWJ-010 | PTC-034 | HR-034 | AVGO | bearish | close_below_support | READY_FOR_PAPER_REVIEW | pending_human_approval | pending | manual watch for close_below_support; no broker action | 1139.41 | 1137.16 | 1143.91 |  |  |  |  |  | manual paper-watch journal only; no order submission | false |
+| PWJ-011 | PTC-035 | HR-035 | META | bearish | close_below_support | READY_FOR_PAPER_REVIEW | pending_human_approval | pending | manual watch for close_below_support; no broker action | 360.19 | 359.58 | 361.58 |  |  |  |  |  | manual paper-watch journal only; no order submission | false |
 
 ## Boundary
 - no trade signal

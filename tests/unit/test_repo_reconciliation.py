@@ -11,8 +11,8 @@ from monster_strategy_lab.validation.paper_review import write_paper_review_plan
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 FULL_ARTIFACT_ROOT = "/home/scott/projects/openclaw-historical-market-data-extraction/artifacts/published/monster_historical_data_strategy_lab_1d_5m_v1.0"
-READY_CANDIDATES = ["PTC-004", "PTC-005", "PTC-009", "PTC-017", "PTC-019", "PTC-021", "PTC-022", "PTC-024"]
-BLOCKED_CANDIDATES = ["PTC-001", "PTC-002", "PTC-003", "PTC-006", "PTC-008", "PTC-016", "PTC-018"]
+READY_CANDIDATES = ["PTC-004", "PTC-005", "PTC-009", "PTC-017", "PTC-019", "PTC-021", "PTC-022", "PTC-024", "PTC-032", "PTC-034", "PTC-035"]
+BLOCKED_CANDIDATES = ["PTC-001", "PTC-002", "PTC-003", "PTC-006", "PTC-008", "PTC-016", "PTC-018", "PTC-033"]
 EXPECTED_SYMBOLS = ["SPY", "QQQ", "AAPL", "MSFT", "NVDA", "AMZN", "GOOGL", "META", "TSLA", "AVGO", "IWM"]
 
 
@@ -57,7 +57,7 @@ def test_paper_review_queue_includes_ready_candidates_and_excludes_blocked() -> 
     rows = _read_csv_rows(csv_path)
     text = md_path.read_text()
 
-    assert len(rows) == 8
+    assert len(rows) == 11
     assert [row["candidate_id"] for row in rows] == READY_CANDIDATES
     assert all(row["paper_review_status"] == "pending_human_approval" for row in rows)
     assert all(row["broker_action_allowed"] == "false" for row in rows)
@@ -77,7 +77,7 @@ def test_paper_watch_journal_index_matches_queued_candidates_and_keeps_broker_ac
     rows = _read_csv_rows(csv_path)
     text = md_path.read_text()
 
-    assert len(rows) == 8
+    assert len(rows) == 11
     assert [row["candidate_id"] for row in rows] == READY_CANDIDATES
     assert all(row["watch_status"] == "pending" for row in rows)
     assert all(row["broker_action_allowed"] == "false" for row in rows)

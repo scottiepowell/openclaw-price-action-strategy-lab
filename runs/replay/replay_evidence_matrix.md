@@ -589,6 +589,82 @@
 - paper_readiness_impact: manual review pending
 - next_action: perform manual visual review
 
+## HR-032
+- replay_id: HR-032
+- related_candidate_id: PTC-032
+- symbol: TSLA
+- date_window: 2023-07-20 to 2023-07-20
+- direction: short
+- side: bearish
+- setup_type: close_below_support
+- replay_status: VERIFIED
+- replay_outcome: confirmed
+- classification: confirmed_breakdown
+- manual_review_status: completed
+- target_hit_after_confirmation: true
+- invalidation_hit_after_confirmation: false
+- evidence_type: real_market_replay
+- real_market_evidence: true
+- paper_readiness_impact: potentially promotable after manual gates
+- next_action: manual visual review
+
+## HR-033
+- replay_id: HR-033
+- related_candidate_id: PTC-033
+- symbol: NVDA
+- date_window: 2023-12-19 to 2023-12-19
+- direction: short
+- side: bearish
+- setup_type: close_below_support
+- replay_status: VERIFIED
+- replay_outcome: insufficient
+- classification: confirmed_breakdown_no_target_hit
+- manual_review_status: completed
+- target_hit_after_confirmation: false
+- invalidation_hit_after_confirmation: false
+- evidence_type: real_market_replay
+- real_market_evidence: true
+- paper_readiness_impact: manual review pending; target not fully met
+- next_action: manual visual review
+
+## HR-034
+- replay_id: HR-034
+- related_candidate_id: PTC-034
+- symbol: AVGO
+- date_window: 2023-12-19 to 2023-12-19
+- direction: short
+- side: bearish
+- setup_type: close_below_support
+- replay_status: VERIFIED
+- replay_outcome: confirmed
+- classification: confirmed_breakdown
+- manual_review_status: completed
+- target_hit_after_confirmation: true
+- invalidation_hit_after_confirmation: false
+- evidence_type: real_market_replay
+- real_market_evidence: true
+- paper_readiness_impact: potentially promotable after manual gates
+- next_action: manual visual review
+
+## HR-035
+- replay_id: HR-035
+- related_candidate_id: PTC-035
+- symbol: META
+- date_window: 2023-12-28 to 2023-12-28
+- direction: short
+- side: bearish
+- setup_type: close_below_support
+- replay_status: VERIFIED
+- replay_outcome: confirmed
+- classification: confirmed_breakdown
+- manual_review_status: completed
+- target_hit_after_confirmation: true
+- invalidation_hit_after_confirmation: false
+- evidence_type: real_market_replay
+- real_market_evidence: true
+- paper_readiness_impact: potentially promotable after manual gates
+- next_action: manual visual review
+
 ## Coverage Summary
 
 ### bullish_confirmed_breakout_target_hit
@@ -617,13 +693,13 @@
 - status: missing
 
 ### bearish_confirmed_breakdown_target_hit
-- count: 2
-- replay_ids: HR-009, HR-019
+- count: 5
+- replay_ids: HR-009, HR-019, HR-032, HR-034, HR-035
 - status: covered
 
 ### bearish_breakdown_no_target_hit
-- count: 1
-- replay_ids: HR-007
+- count: 2
+- replay_ids: HR-007, HR-033
 - status: covered
 
 ### bearish_support_touch_no_trigger
@@ -662,40 +738,40 @@
 - clustered_windows_warning: false
 
 ### count by year
-- 2023: 31
+- 2023: 35
 
 ### count by month
 - 2023-05: 10
 - 2023-06: 1
-- 2023-07: 3
+- 2023-07: 4
 - 2023-08: 3
 - 2023-09: 3
 - 2023-10: 5
 - 2023-11: 2
-- 2023-12: 4
+- 2023-12: 7
 
 ### count by symbol
 - AAPL: 3
 - AMZN: 1
-- AVGO: 3
+- AVGO: 4
 - GOOGL: 1
 - IWM: 2
-- META: 10
+- META: 11
 - MSFT: 2
-- NVDA: 3
+- NVDA: 4
 - QQQ: 1
 - SPY: 4
-- TSLA: 1
+- TSLA: 2
 
 ### count by side
-- bearish: 14
+- bearish: 18
 - bullish: 17
 
 ### count by classification
 - ambiguous: 1
 - candidate_for_manual_review: 15
-- confirmed_breakdown: 2
-- confirmed_breakdown_no_target_hit: 1
+- confirmed_breakdown: 5
+- confirmed_breakdown_no_target_hit: 2
 - confirmed_breakout: 6
 - confirmed_breakout_no_target_hit: 1
 - failed_breakdown_reclaim: 2
